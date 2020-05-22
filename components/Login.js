@@ -43,7 +43,7 @@ export default class Login extends React.Component {
     loginSection() {
         return (
             <View style={styles.loginContainer}>
-                <TextInput style={styles.loginInput} placeholder='Username' />
+                <TextInput style={styles.loginInput} placeholder='E-mail' />
                 <TextInput style={styles.loginInput} placeholder='Password' secureTextEntry />
                 <TouchableOpacity style={styles.logInButton} onPress={() => this.props.navigation.navigate('Home')}>
                     <Text style={styles.logInLabel}>Log In</Text>
@@ -74,7 +74,7 @@ export default class Login extends React.Component {
 
     newAccountSection() {
         return (
-            <View  style={styles.newAccountContainer}>
+            <View style={styles.newAccountContainer}>
                 <TouchableOpacity style={styles.newAccountButton} onPress={this.openNewAccountForm}>
                     <Text style={styles.newAccountLabel}>Create New Account</Text>
                 </TouchableOpacity>

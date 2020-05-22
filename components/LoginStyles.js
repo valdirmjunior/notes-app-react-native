@@ -19,8 +19,7 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         backgroundColor: 'rgb(247, 247, 247)',
         alignItems: 'center',
-        justifyContent: 'center',
-        borderStyle: 'solid',
+        justifyContent: 'center'
     },
 
     logoImage: {
@@ -34,9 +33,9 @@ const styles = StyleSheet.create({
         alignItems: 'stretch',
         justifyContent: 'space-evenly',
         width: '100%',
-        height: '30%',
-        borderStyle: 'solid',
+        height: '32%',
         backgroundColor: 'white',
+        paddingTop: 10,
         paddingLeft: 10,
         paddingRight: 10
     },
@@ -70,7 +69,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
-        height: '11%',
+        height: '6%',
         borderStyle: 'solid',
     },
 
@@ -81,14 +80,13 @@ const styles = StyleSheet.create({
         color: 'grey'
     },
 
-    /* forgot password ou new account separator */
+    /* Forgot password ou new account separator */
     separatorContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
         height: '11%',
-        borderStyle: 'solid',
         paddingLeft: 10,
         paddingRight: 10,
     },
@@ -115,7 +113,6 @@ const styles = StyleSheet.create({
         alignItems: 'stretch',
         width: '100%',
         height: '11%',
-        borderStyle: 'solid',
         paddingLeft: 10,
         paddingRight: 10,
     },

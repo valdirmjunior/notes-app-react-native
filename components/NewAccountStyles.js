@@ -7,10 +7,34 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         width: '100%',
         height: '100%',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+
+    logoContainer: {
+        width: '100%',
+        height: '35%',
+        borderStyle: 'solid',
+        backgroundColor: 'rgb(247, 247, 247)',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+
+    logoImage: {
+        width: 100,
+        height: 100
+    },
+
+    newAccountContainer: {
+        flex: 1,
+        flexDirection: 'column',
+        width: '100%',
+        height: '100%',
         alignItems: 'stretch',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         paddingLeft: 10,
-        paddingRight: 10
+        paddingRight: 10,
+        paddingTop: 10
     },
 
     newAccountInput: {
