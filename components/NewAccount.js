@@ -15,7 +15,7 @@ export default class NewAccount extends React.Component {
                     <TextInput style={styles.newAccountInput} placeholder='Last name' />
                     <TextInput style={styles.newAccountInput} placeholder='E-mail' />
                     <TextInput style={styles.newAccountInput} placeholder='Password' secureTextEntry />
-                    <TouchableOpacity style={styles.saveAccountButton} onPress={this.accountIsSavedAlert}>
+                    <TouchableOpacity style={styles.saveAccountButton} onPress={this.saveAccount}>
                         <Text style={styles.saveAccountLabel}>Save</Text>
                     </TouchableOpacity>
                 </View>
@@ -23,7 +23,7 @@ export default class NewAccount extends React.Component {
         )
     }
 
-    accountIsSavedAlert() {
+    saveAccount() {
         Alert.alert('New Account', 'Account saved successfully!');
     }
 }
