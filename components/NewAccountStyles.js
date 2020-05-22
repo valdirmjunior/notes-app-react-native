@@ -20,11 +20,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
 
-    logoImage: {
-        width: 100,
-        height: 100
-    },
-
     newAccountContainer: {
         flex: 1,
         flexDirection: 'column',

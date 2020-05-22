@@ -1,26 +1,51 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image } from 'react-native';
+import { createAppContainer, createStackNavigator } from 'react-navigation';
 import styles from './ForgotPasswordStyles';
 
-export default class ForgotPassword extends React.Component {
-
+class FindAccount extends React.Component {
     render() {
         return (
             <View style={styles.mainContainer}>
                 <View style={styles.logoContainer}>
-                    <Image style={styles.logoImage} source={require('../assets/logo.png')} />
+                    <Image source={require('../assets/logo.png')} />
                 </View>
-                <View style={styles.forgotPasswordContainer}>
-                    <TextInput style={styles.emailInput} placeholder='E-mail' />
-                    <TouchableOpacity style={styles.sentEmailButton} onPress={this.sentEmail}>
-                        <Text style={styles.sentEmailLabel}>Sent</Text>
+                <View style={styles.findAccountContainer}>
+                    <Text style={styles.findAccountTitle}>First, let's find your account</Text>
+                    <TextInput style={styles.emailInput} placeholder='Enter your e-mail' />
+                    <TouchableOpacity style={styles.findAccountButton}>
+                        <Text style={styles.findAccountLabel}>Find Account</Text>
                     </TouchableOpacity>
                 </View>
             </View>
         )
     }
+}
 
-    sentEmail() {
-        Alert.alert('Forgot Password', 'A link has been sent for your e-mail.');
+class EnterCode extends React.Component {
+    render() {
+        return (
+            <View style={styles.mainContainer}>
+                <View style={styles.logoContainer}>
+                    <Image source={require('../assets/logo.png')} />
+                </View>
+                <View style={styles.findAccountContainer}>
+                    <Text style={styles.findAccountTitle}>We just sent you a verification code to your e-mail</Text>
+                    <TextInput style={styles.emailInput} placeholder='Enter code' />
+                    <TouchableOpacity style={styles.findAccountButton}>
+                        <Text style={styles.findAccountLabel}>Submit</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        )
     }
 }
+
+ 
+const stack = createStackNavigator({
+    FindAccount: FindAccount,
+    EnterCode: EnterCode
+},{
+    initialRouteName: 'FindAccount'
+});
+export default createAppContainer(stack);

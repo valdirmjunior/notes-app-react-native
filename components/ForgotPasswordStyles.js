@@ -20,16 +20,17 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
 
-    logoImage: {
-        width: 100,
-        height: 100
+    findAccountTitle: {
+        fontSize: 20,
+        color: 'grey',
+        textAlign: 'center'
     },
 
-    forgotPasswordContainer: {
+    findAccountContainer: {
         flex: 1,
         flexDirection: 'column',
         width: '100%',
-        height: '100%',
+        height: '65%',
         alignItems: 'stretch',
         justifyContent: 'flex-start',
         paddingLeft: 10,
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
         borderColor: 'rgb(216, 222, 226)'
     },
 
-    sentEmailButton: {
+    findAccountButton: {
         borderStyle: 'solid',
         borderRadius: 7,
         marginTop: 5,
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgb(250, 218, 128)'
     },
 
-    sentEmailLabel: {
+    findAccountLabel: {
         textAlign: 'center',
         fontWeight: 'bold',
         color: 'grey',

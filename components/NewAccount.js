@@ -8,7 +8,7 @@ export default class NewAccount extends React.Component {
         return (
             <View style={styles.mainContainer}>
                 <View style={styles.logoContainer}>
-                    <Image style={styles.logoImage} source={require('../assets/logo.png')} />
+                    <Image source={require('../assets/logo.png')} />
                 </View>
                 <View style={styles.newAccountContainer}>
                     <TextInput style={styles.newAccountInput} placeholder='First name' />

@@ -42,7 +42,7 @@ export default class Login extends React.Component {
     logoSection() {
         return (
             <View style={styles.logoContainer}>
-                <Image style={styles.logoImage} source={require('../assets/logo.png')} />
+                <Image source={require('../assets/logo.png')} />
             </View>
         )
     }
