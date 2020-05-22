@@ -1,139 +1,103 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, Image, Modal, Button } from 'react-native';
+import styles from './LoginStyles';
+import NewAccount from './NewAccount';
 
 export default class Login extends React.Component {
+
+    state = {
+        visible: false
+    };
+
+    constructor(props) {
+        super(props);
+        this.openNewAccountForm = this.openNewAccountForm.bind(this);
+        this.closeNewAccountForm = this.closeNewAccountForm.bind(this);
+    }
+
     render() {
+        return this.loginScreen()
+    }
+
+    loginScreen() {
         return (
             <View style={styles.mainContainer}>
-                <View style={styles.logoContainer}>
-                    <View>
-                        <Image style={styles.logoImage} source={require('../assets/many-notes2.png')} />
-                    </View>
-                </View>
-                <View style={styles.loginContainer}>
-                    <TextInput style={styles.loginFields} placeholder='Username' />
-                    <TextInput style={styles.loginFields} placeholder='Password' />
-                    <TouchableOpacity style={styles.logInButton}>
-                        <Text style={styles.logInLabel}>Log In</Text>
-                    </TouchableOpacity>
-                    <Text style={styles.forgotPassword}>Forgot Password?</Text>
-                    <View style={styles.separatorContainer}>
-                        <View style={styles.separatorLine} />
-                        <Text style={styles.separatorLabel}>OR</Text>
-                        <View style={styles.separatorLine} />
-                    </View>
-                    <TouchableOpacity style={styles.newAccountButton}>
-                        <Text style={styles.newAccountLabel}>Create New Account</Text>
-                    </TouchableOpacity>
-                </View>
+                {this.logoSection()}
+                {this.loginSection()}
+                {this.forgotPasswordSection()}
+                {this.forgotPasswordOrNewAccountSeparator()}
+                {this.newAccountSection()}
+                {this.newAccountFormSection()}
             </View>
-        );
+        )
+    }
+
+    logoSection() {
+        return (
+            <View style={styles.logoContainer}>
+                <Image style={styles.logoImage} source={require('../assets/logo.png')} />
+            </View>
+        )
+    }
+
+    loginSection() {
+        return (
+            <View style={styles.loginContainer}>
+                <TextInput style={styles.loginInput} placeholder='Username' />
+                <TextInput style={styles.loginInput} placeholder='Password' secureTextEntry />
+                <TouchableOpacity style={styles.logInButton} onPress={() => this.props.navigation.navigate('Home')}>
+                    <Text style={styles.logInLabel}>Log In</Text>
+                </TouchableOpacity>
+            </View>
+        )
+    }
+
+    forgotPasswordOrNewAccountSeparator() {
+        return (
+            <View style={styles.separatorContainer}>
+                <View style={styles.separatorLine} />
+                <Text style={styles.separatorLabel}>OR</Text>
+                <View style={styles.separatorLine} />
+            </View>
+        )
+    }
+
+    forgotPasswordSection() {
+        return (
+            <View style={styles.forgotPasswordContainer}>
+                <TouchableOpacity>
+                    <Text style={styles.forgotPasswordLabel}>Forgot Password?</Text>
+                </TouchableOpacity>
+            </View>
+        )
+    }
+
+    newAccountSection() {
+        return (
+            <View  style={styles.newAccountContainer}>
+                <TouchableOpacity style={styles.newAccountButton} onPress={this.openNewAccountForm}>
+                    <Text style={styles.newAccountLabel}>Create New Account</Text>
+                </TouchableOpacity>
+            </View>
+        )
+    }
+
+    newAccountFormSection() {
+        return (
+            <Modal animationType='slide' visible={this.state.visible}>
+                <NewAccount />
+                <TouchableOpacity style={styles.alreadyHaveAccountButton} onPress={this.closeNewAccountForm}>
+                    <Text style={styles.alreadyHaveAccountButtonLabel}>Already have an account?</Text>
+                </TouchableOpacity>
+            </Modal>
+        )
+    }
+
+    openNewAccountForm() {
+        this.setState({ visible: true });
+    }
+
+    closeNewAccountForm() {
+        this.setState({ visible: false });
     }
 }
-
-const styles = StyleSheet.create({
-
-    mainContainer: {
-        flex: 1,
-        flexDirection: 'column',
-        width: '100%',
-        height: '100%',
-        alignItems: 'center',
-        justifyContent: 'flex-start'
-    },
-
-    logoContainer: {
-        width: '100%',
-        height: '35%',
-        borderStyle: 'solid',
-        backgroundColor: 'rgb(247, 247, 247)',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-
-    logoImage: {
-        width: 100,
-        height: 100
-    },
-
-    loginContainer: {
-        width: '100%',
-        height: '100%',
-        borderStyle: 'solid',
-        backgroundColor: 'white',
-        paddingTop: 20,
-        paddingLeft: 10,
-        paddingRight: 10,
-    },
-
-    loginFields: {
-        fontSize: 15,
-        borderWidth: 1,
-        borderStyle: 'solid',
-        borderRadius: 3,
-        marginTop: 5,
-        padding: 15,
-        borderColor: 'rgb(216, 222, 226)'
-    },
-
-    logInButton: {
-        borderStyle: 'solid',
-        borderRadius: 7,
-        marginTop: 5,
-        padding: 13,
-        backgroundColor: 'rgb(254, 239, 160)'
-    },
-
-    logInLabel: {
-        textAlign: 'center',
-        fontWeight: 'bold',
-        color: 'grey',
-        fontSize: 17
-    },
-
-    forgotPassword: {
-        marginTop: 22,
-        textAlign: 'center',
-        fontWeight: 'bold',
-        fontSize: 17,
-        color: 'grey'
-    },
-
-    separatorContainer: {
-        marginTop: 19,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 5
-    },
-
-    separatorLabel: {
-        fontSize: 17,
-        color: 'grey',
-        fontWeight: 'bold',
-        marginLeft: 5,
-        marginRight: 5
-    },
-
-    separatorLine: {
-        borderStyle: 'solid',
-        borderColor: 'rgb(247, 247, 247)',
-        borderBottomWidth: 2,
-        width: '45%'
-    },
-
-    newAccountButton: {
-        borderStyle: 'solid',
-        borderRadius: 7,
-        marginTop: 22,
-        padding: 13,
-        backgroundColor: 'rgb(245, 245, 245)'
-    },
-
-    newAccountLabel: {
-        textAlign: 'center',
-        fontWeight: 'bold',
-        color: 'rgb(228, 193, 0)',
-        fontSize: 17
-    },
-})

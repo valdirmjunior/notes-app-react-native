@@ -1,20 +1,7 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import Login from './components/Login';
+import Home from './components/Home';
+import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Login />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const SwitchNavigator = createSwitchNavigator({ Login: Login, Home: Home });
+const App = createAppContainer(SwitchNavigator);
+export default App;
