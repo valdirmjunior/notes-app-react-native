@@ -84,7 +84,7 @@ export default class Login extends React.Component {
             <Modal animationType='slide' visible={this.state.forgotPasswordFormOpened}>
                 <ForgotPassword />
                 <TouchableOpacity style={styles.alreadyHaveAccountButton} onPress={this.closeForgotPasswordForm}>
-                    <Text style={styles.alreadyHaveAccountButtonLabel}>Back</Text>
+                    <Text style={styles.alreadyHaveAccountButtonLabel}>Cancel</Text>
                 </TouchableOpacity>
             </Modal>
         )
