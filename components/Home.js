@@ -1,12 +1,8 @@
-import React from 'react';
 import { createDrawerNavigator, createAppContainer } from 'react-navigation';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
 import Notes from './Notes';
-import Trash from './Trash';
 
 const routes = {
-    Notes: { screen: Notes },
-    Trash: { screen: Trash }
+    Notes: { screen: Notes }
 };
 
 const config = {

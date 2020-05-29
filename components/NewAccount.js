@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, Alert, KeyboardAvoidingView } from 'react-native';
 import styles from './NewAccountStyles';
 
 export default class NewAccount extends React.Component {
 
     render() {
         return (
-            <View style={styles.mainContainer}>
+            <KeyboardAvoidingView style={styles.mainContainer} behavior='padding'>
                 <View style={styles.logoContainer}>
                     <Image source={require('../assets/logo.png')} />
                 </View>
@@ -19,7 +19,7 @@ export default class NewAccount extends React.Component {
                         <Text style={styles.saveAccountLabel}>Save</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
+            </KeyboardAvoidingView>
         )
     }
 

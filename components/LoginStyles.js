@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         paddingRight: 10
     },
 
-    loginInput: {
+    logInInput: {
         fontSize: 15,
         borderWidth: 1,
         borderStyle: 'solid',

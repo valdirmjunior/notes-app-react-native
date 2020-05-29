@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TextInput, TouchableOpacity, Image, Modal, Button } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, Image, Modal } from 'react-native';
 
 import styles from './LoginStyles';
 
@@ -50,8 +50,8 @@ export default class Login extends React.Component {
     loginSection() {
         return (
             <View style={styles.loginContainer}>
-                <TextInput style={styles.loginInput} placeholder='E-mail' />
-                <TextInput style={styles.loginInput} placeholder='Password' secureTextEntry />
+                <TextInput style={styles.logInInput} placeholder='E-mail' />
+                <TextInput style={styles.logInInput} placeholder='Password' secureTextEntry />
                 <TouchableOpacity style={styles.logInButton} onPress={() => this.props.navigation.navigate('Home')}>
                     <Text style={styles.logInLabel}>Log In</Text>
                 </TouchableOpacity>

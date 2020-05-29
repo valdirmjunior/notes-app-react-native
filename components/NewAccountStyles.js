@@ -7,26 +7,21 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         width: '100%',
         height: '100%',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         justifyContent: 'center'
     },
 
     logoContainer: {
         width: '100%',
         height: '35%',
-        borderStyle: 'solid',
         backgroundColor: 'rgb(247, 247, 247)',
         alignItems: 'center',
         justifyContent: 'center'
     },
 
     newAccountContainer: {
-        flex: 1,
-        flexDirection: 'column',
         width: '100%',
         height: '100%',
-        alignItems: 'stretch',
-        justifyContent: 'flex-start',
         paddingLeft: 10,
         paddingRight: 10,
         paddingTop: 10
