@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet, Modal } from 'react-native';
+import { View, Text, TouchableOpacity, Image, Modal } from 'react-native';
+
+import styles from './NotesStyles';
 
 import NewNote from './NewNote';
 import NotesList from './NotesList';
-import { TextInput } from 'react-native-gesture-handler';
 
 export default class Notes extends React.Component {
 
@@ -28,23 +29,14 @@ export default class Notes extends React.Component {
     }
 
     showNotesContainer() {
-        const hasNotes = true;
+        const hasNotes = false;
         return hasNotes ?
-                this.notesContainer() :
-                this.noNotesContainer();
+            this.notesContainer() :
+            this.noNotesContainer();
     }
 
     notesContainer() {
-        const notes = [
-            {
-                id: '1',
-                title: 'A.W. Tozer quote'
-            },
-            {
-                id: '2',
-                title: 'C.S. Lewis quote'
-            }
-        ];
+        const notes = [];
         return (
             <View style={styles.notesContainer}>
                 <NotesList notes={notes} />
@@ -92,82 +84,3 @@ export default class Notes extends React.Component {
     }
 }
 
-const styles = StyleSheet.create({
-
-    mainContainer: {
-        flex: 1,
-        flexDirection: 'column',
-        width: '100%',
-        height: '100%',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-
-    notesContainer: {
-        flex: 1,
-        flexDirection: 'column',
-        width: '100%',
-        height: '100%',
-        alignItems: 'stretch',
-        justifyContent: 'flex-start',
-        paddingLeft: 10,
-        paddingRight: 10,
-        paddingTop: 10
-    },
-
-    noNotesContainer: {
-        flex: 1,
-        flexDirection: 'column',
-        width: '100%',
-        height: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingLeft: 10,
-        paddingRight: 10,
-        paddingTop: 10
-    },
-
-    noNotesTitle: {
-        fontSize: 25,
-        fontWeight: 'bold',
-        marginTop: 5,
-        color: 'grey'
-    },
-
-    noNotesInfo: {
-        fontSize: 17,
-        textAlign: 'center',
-        marginTop: 5,
-        color: 'grey'
-    },
-
-    newNoteContainer: {
-        width: '100%'
-    },
-
-    newNoteButton: {
-        width: '100%',
-        padding: 13,
-        backgroundColor: 'rgb(247, 247, 247)'
-    },
-
-    newNoteButtonLabel: {
-        textAlign: 'center',
-        fontWeight: 'bold',
-        color: 'rgb(244, 182, 6)',
-        fontSize: 17
-    },
-
-    cancelNewNoteButton: {
-        width: '100%',
-        padding: 13,
-        backgroundColor: 'rgb(247, 247, 247)'
-    },
-
-    cancelNewNoteButtonLabel: {
-        textAlign: 'center',
-        fontWeight: 'bold',
-        color: 'rgb(244, 182, 6)',
-        fontSize: 17
-    }
-})

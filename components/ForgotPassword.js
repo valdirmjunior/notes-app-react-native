@@ -1,12 +1,13 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, KeyboardAvoidingView } from 'react-native';
 import { createAppContainer, createStackNavigator } from 'react-navigation';
+
 import styles from './ForgotPasswordStyles';
 
 class FindAccount extends React.Component {
     render() {
         return (
-            <View style={styles.mainContainer}>
+            <KeyboardAvoidingView style={styles.mainContainer}>
                 <View style={styles.logoContainer}>
                     <Image source={require('../assets/logo.png')} />
                 </View>
@@ -17,7 +18,7 @@ class FindAccount extends React.Component {
                         <Text style={styles.findAccountLabel}>Find Account</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
+            </KeyboardAvoidingView>
         )
     }
 }
@@ -25,7 +26,7 @@ class FindAccount extends React.Component {
 class EnterCode extends React.Component {
     render() {
         return (
-            <View style={styles.mainContainer}>
+            <KeyboardAvoidingView style={styles.mainContainer}>
                 <View style={styles.logoContainer}>
                     <Image source={require('../assets/logo.png')} />
                 </View>
@@ -36,7 +37,7 @@ class EnterCode extends React.Component {
                         <Text style={styles.findAccountLabel}>Submit</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
+            </KeyboardAvoidingView>
         )
     }
 }
@@ -44,7 +45,7 @@ class EnterCode extends React.Component {
 class TypeNewPassword extends React.Component {
     render() {
         return (
-            <View style={styles.mainContainer}>
+            <KeyboardAvoidingView style={styles.mainContainer}>
                 <View style={styles.logoContainer}>
                     <Image source={require('../assets/logo.png')} />
                 </View>
@@ -56,7 +57,7 @@ class TypeNewPassword extends React.Component {
                         <Text style={styles.findAccountLabel}>Submit</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
+            </KeyboardAvoidingView>
         )
     }
 }

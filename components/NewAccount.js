@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, Alert, KeyboardAvoidingView } from 'react-native';
+
 import styles from './NewAccountStyles';
 
 export default class NewAccount extends React.Component {

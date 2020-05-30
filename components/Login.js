@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TextInput, TouchableOpacity, Image, Modal } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, Image, Modal, KeyboardAvoidingView } from 'react-native';
 
 import styles from './LoginStyles';
 
@@ -27,7 +27,7 @@ export default class Login extends React.Component {
 
     loginScreen() {
         return (
-            <View style={styles.mainContainer}>
+            <KeyboardAvoidingView style={styles.mainContainer}>
                 {this.logoSection()}
                 {this.loginSection()}
                 {this.forgotPasswordSection()}
@@ -35,7 +35,7 @@ export default class Login extends React.Component {
                 {this.forgotPasswordOrNewAccountSeparator()}
                 {this.newAccountSection()}
                 {this.newAccountFormSection()}
-            </View>
+            </KeyboardAvoidingView>
         )
     }
 
