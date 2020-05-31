@@ -2,30 +2,48 @@ export default class Accounts {
 
     static _accounts = [];
 
-    constructor() {
-        this._validateAccount = this._validateAccount.bind(this);
-        this._checkAccountDoesNotExists = this._checkAccountDoesNotExists.bind(this);
-    }
-
     save(account) {
         this._validateAccount(account);
         this._checkAccountDoesNotExists(account);
         this._storeAccount(account);
     }
 
+    matches(matches) {
+        return Accounts._accounts.filter(matches);
+    }
+
     _validateAccount(account) {
-        if (account.firstName == '') throw 'First name is mandatory.';
-        if (account.lastName == '') throw 'Last name is mandatory.';
-        if (account.email == '') throw 'E-mail is mandatory.';
-        if (account.password == '') throw 'Password is mandatory.';
+        this._checkFirstNameWasProvided(account);
+        this._checkLastNameWasProvided(account);
+        this._checkEmailWasProvided(account);
+        this._checkPasswordWasProvided(account);
+    }
+
+    _checkFirstNameWasProvided(account) {
+        if (account.firstName == '')
+            throw 'First name is required.';
+    }
+
+    _checkLastNameWasProvided(account) {
+        if (account.lastName == '')
+            throw 'Last name is required.';
+    }
+
+    _checkEmailWasProvided(account) {
+        if (account.email == '')
+            throw 'E-mail is required.';
+    }
+
+    _checkPasswordWasProvided(account) {
+        if (account.password == '')
+            throw 'Password is required.';
     }
 
     _checkAccountDoesNotExists(account) {
-        const email = account.email;
-        Accounts._accounts.forEach(element => {
-            if (element.email == email)
-                throw 'E-mail already exists.'
-        });
+        const matchesByEmail = (current) => current.email == account.email;
+        const matches = this.matches(matchesByEmail);
+        if (matches.length > 0)
+            throw 'E-mail already exists.';
     }
 
     _storeAccount(account) {

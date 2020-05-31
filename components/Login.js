@@ -1,7 +1,9 @@
 import React from 'react';
-import { Text, View, TextInput, TouchableOpacity, Image, Modal, KeyboardAvoidingView } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, Image, Modal, KeyboardAvoidingView, Alert } from 'react-native';
 
 import styles from './LoginStyles';
+
+import Logins from '../services/login/Logins';
 
 import NewAccount from './NewAccount';
 import ForgotPassword from './ForgotPassword';
@@ -17,11 +19,15 @@ export default class Login extends React.Component {
 
     constructor(props) {
         super(props);
+        this.login = new Logins();
+        this.navigator = this.props.navigation;
         this.openNewAccountForm = this.openNewAccountForm.bind(this);
         this.closeNewAccountForm = this.closeNewAccountForm.bind(this);
         this.openForgotPasswordForm = this.openForgotPasswordForm.bind(this);
         this.closeForgotPasswordForm = this.closeForgotPasswordForm.bind(this);
         this.fillLoginCredentials = this.fillLoginCredentials.bind(this);
+        this.doLogin = this.doLogin.bind(this);
+        this.alert = this.alert.bind(this);
     }
 
     render() {
@@ -53,13 +59,24 @@ export default class Login extends React.Component {
     loginSection() {
         return (
             <View style={styles.loginContainer}>
-                <TextInput style={styles.logInInput} value={this.state.email} placeholder='E-mail' />
-                <TextInput style={styles.logInInput} value={this.state.password} placeholder='Password' secureTextEntry />
-                <TouchableOpacity style={styles.logInButton} onPress={() => this.props.navigation.navigate('Home')}>
+                <TextInput style={styles.logInInput} value={this.state.email} placeholder='E-mail' onChangeText={(email) => this.setState({ email })} />
+                <TextInput style={styles.logInInput} value={this.state.password} placeholder='Password' onChangeText={(password) => this.setState({ password })} secureTextEntry />
+                <TouchableOpacity style={styles.logInButton} onPress={this.doLogin}>
                     <Text style={styles.logInLabel}>Log In</Text>
                 </TouchableOpacity>
             </View>
         )
+    }
+
+    doLogin() {
+        try {
+            const email = this.state.email;
+            const password = this.state.password;
+            this.login.login(email, password);
+            this.navigator.navigate('Home');
+        } catch (error) {
+            this.alert(error);
+        }
     }
 
     forgotPasswordOrNewAccountSeparator() {
@@ -112,10 +129,11 @@ export default class Login extends React.Component {
     }
 
     newAccountFormSection() {
+        const closeNewAccountForm = (account) => this.closeNewAccountForm();
+        const fillLoginCredentials = (account) => this.fillLoginCredentials(account);
         return (
             <Modal animationType='slide' visible={this.state.newAccountFormOpened}>
-                <NewAccount onSuccess={[((account) => this.closeNewAccountForm()),
-                ((account) => this.fillLoginCredentials(account))]} />
+                <NewAccount onSuccess={[closeNewAccountForm, fillLoginCredentials]} />
                 <TouchableOpacity style={styles.alreadyHaveAccountButton} onPress={this.closeNewAccountForm}>
                     <Text style={styles.alreadyHaveAccountButtonLabel}>Already have an account?</Text>
                 </TouchableOpacity>
@@ -133,5 +151,9 @@ export default class Login extends React.Component {
 
     closeNewAccountForm() {
         this.setState({ newAccountFormOpened: false });
+    }
+
+    alert(message) {
+        Alert.alert('Log In', message);
     }
 }
