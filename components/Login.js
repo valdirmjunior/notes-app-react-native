@@ -9,6 +9,8 @@ import ForgotPassword from './ForgotPassword';
 export default class Login extends React.Component {
 
     state = {
+        email: '',
+        password: '',
         newAccountFormOpened: false,
         forgotPasswordFormOpened: false
     };
@@ -19,6 +21,7 @@ export default class Login extends React.Component {
         this.closeNewAccountForm = this.closeNewAccountForm.bind(this);
         this.openForgotPasswordForm = this.openForgotPasswordForm.bind(this);
         this.closeForgotPasswordForm = this.closeForgotPasswordForm.bind(this);
+        this.fillLoginCredentials = this.fillLoginCredentials.bind(this);
     }
 
     render() {
@@ -50,8 +53,8 @@ export default class Login extends React.Component {
     loginSection() {
         return (
             <View style={styles.loginContainer}>
-                <TextInput style={styles.logInInput} placeholder='E-mail' />
-                <TextInput style={styles.logInInput} placeholder='Password' secureTextEntry />
+                <TextInput style={styles.logInInput} value={this.state.email} placeholder='E-mail' />
+                <TextInput style={styles.logInInput} value={this.state.password} placeholder='Password' secureTextEntry />
                 <TouchableOpacity style={styles.logInButton} onPress={() => this.props.navigation.navigate('Home')}>
                     <Text style={styles.logInLabel}>Log In</Text>
                 </TouchableOpacity>
@@ -111,12 +114,17 @@ export default class Login extends React.Component {
     newAccountFormSection() {
         return (
             <Modal animationType='slide' visible={this.state.newAccountFormOpened}>
-                <NewAccount />
+                <NewAccount onSuccess={[((account) => this.closeNewAccountForm()),
+                ((account) => this.fillLoginCredentials(account))]} />
                 <TouchableOpacity style={styles.alreadyHaveAccountButton} onPress={this.closeNewAccountForm}>
                     <Text style={styles.alreadyHaveAccountButtonLabel}>Already have an account?</Text>
                 </TouchableOpacity>
             </Modal>
         )
+    }
+
+    fillLoginCredentials(account) {
+        this.setState({ email: account.email, password: account.password });
     }
 
     openNewAccountForm() {
