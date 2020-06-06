@@ -1,10 +1,12 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, Modal } from 'react-native';
+import { View, Text, TouchableOpacity, Image, Modal, Alert } from 'react-native';
 
 import styles from './NotesStyles';
 
 import NewNote from './NewNote';
 import NotesList from './NotesList';
+
+import SessionStorage from '../services/SessionStorage';
 
 export default class Notes extends React.Component {
 
@@ -14,73 +16,59 @@ export default class Notes extends React.Component {
 
     constructor(props) {
         super(props);
-        this.openNewNoteForm = this.openNewNoteForm.bind(this);
-        this.closeNewNoteForm = this.closeNewNoteForm.bind(this);
+        this._openNewNoteForm = this._openNewNoteForm.bind(this);
+        this._closeNewNoteForm = this._closeNewNoteForm.bind(this);
+        this._currentAccount = this._currentAccount.bind(this);
     }
 
     render() {
         return (
             <View style={styles.mainContainer}>
-                {this.showNotesContainer()}
-                {this.newNoteSection()}
-                {this.newNoteFormSection()}
+                {this._notesSection()}
+                {this._newNoteSection()}
+                {this._newNoteFormSection()}
             </View>
         )
     }
 
-    showNotesContainer() {
-        const hasNotes = false;
-        return hasNotes ?
-            this.notesContainer() :
-            this.noNotesContainer();
+    _notesSection() {
+        const account = this._currentAccount();
+        const notes = account.notes;
+        return <NotesList notes={notes} />
     }
 
-    notesContainer() {
-        const notes = [];
-        return (
-            <View style={styles.notesContainer}>
-                <NotesList notes={notes} />
-            </View>
-        )
-    }
-
-    noNotesContainer() {
-        return (
-            <View style={styles.noNotesContainer}>
-                <Image source={require('../assets/logo.png')} />
-                <Text style={styles.noNotesTitle}>No notes yet!</Text>
-                <Text style={styles.noNotesInfo}>When you create notes, they'll appear here.</Text>
-            </View>
-        )
-    }
-
-    newNoteSection() {
+    _newNoteSection() {
         return (
             <View style={styles.newNoteContainer}>
-                <TouchableOpacity style={styles.newNoteButton} onPress={this.openNewNoteForm}>
+                <TouchableOpacity style={styles.newNoteButton} onPress={this._openNewNoteForm}>
                     <Text style={styles.newNoteButtonLabel}>New Note</Text>
                 </TouchableOpacity>
             </View>
         )
     }
 
-    newNoteFormSection() {
+    _newNoteFormSection() {
         return (
             <Modal animationType='slide' visible={this.state.newNoteFormOpened}>
                 <NewNote />
-                <TouchableOpacity style={styles.cancelNewNoteButton} onPress={this.closeNewNoteForm}>
+                <TouchableOpacity style={styles.cancelNewNoteButton} onPress={this._closeNewNoteForm}>
                     <Text style={styles.cancelNewNoteButtonLabel}>Cancel</Text>
                 </TouchableOpacity>
             </Modal>
         )
     }
 
-    openNewNoteForm() {
+    _openNewNoteForm() {
         this.setState({ newNoteFormOpened: true });
     }
 
-    closeNewNoteForm() {
+    _closeNewNoteForm() {
         this.setState({ newNoteFormOpened: false });
+    }
+
+    _currentAccount() {
+        const loggedAccount = SessionStorage.getLoggedAccount();
+        return loggedAccount.account;
     }
 }
 

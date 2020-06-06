@@ -9,9 +9,7 @@ export default class NoteItem extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            note: this.props.note
-        }
+        this.state = { note: this.props.note }
     }
 
     render() {
@@ -19,10 +17,10 @@ export default class NoteItem extends React.Component {
         return (
             <View style={styles.noteItemContainer}>
                 <Text style={styles.noteTitle}>
-                    {note.item.title}
+                    {note.title}
                 </Text>
                 <View style={styles.deleteNoteContainer}>
-                    <DeleteNoteItem note={note} />
+                    <DeleteNoteItem note={note} onDelete={this.props.onDelete} />
                 </View>
             </View>
         )
