@@ -8,7 +8,7 @@ export default class SaveAccountService {
     }
 
     _checkAccountWasProvided(account) {
-        if (account == null || account == undefined)
+        if (!account)
             throw 'No account info was provided.';
     }
 

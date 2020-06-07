@@ -1,5 +1,7 @@
 import React from 'react';
-import { FlatList, SafeAreaView, StyleSheet, View, Image, Text } from 'react-native';
+import { FlatList, SafeAreaView, View, Image, Text } from 'react-native';
+
+import styles from './NotesListStyles';
 
 import NoteItem from './NoteItem';
 
@@ -28,7 +30,7 @@ export default class NotesList extends React.Component {
                     <FlatList
                         data={notes}
                         renderItem={note => <NoteItem note={note.item} onDelete={[refreshList]} />}
-                        keyExtractor={note => note.id} />
+                        keyExtractor={(note, index) => index.toString()} />
                 </SafeAreaView>
             </View>
         )
@@ -45,42 +47,3 @@ export default class NotesList extends React.Component {
     }
 }
 
-const styles = StyleSheet.create({
-    notesContainer: {
-        flex: 1,
-        flexDirection: 'column',
-        width: '100%',
-        height: '100%',
-        alignItems: 'stretch',
-        justifyContent: 'flex-start',
-        paddingLeft: 10,
-        paddingRight: 10,
-        paddingTop: 10
-    },
-
-    noNotesContainer: {
-        flex: 1,
-        flexDirection: 'column',
-        width: '100%',
-        height: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingLeft: 10,
-        paddingRight: 10,
-        paddingTop: 10
-    },
-
-    noNotesTitle: {
-        fontSize: 25,
-        fontWeight: 'bold',
-        marginTop: 5,
-        color: 'grey'
-    },
-
-    noNotesInfo: {
-        fontSize: 17,
-        textAlign: 'center',
-        marginTop: 5,
-        color: 'grey'
-    }
-});

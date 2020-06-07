@@ -17,22 +17,22 @@ export default class Account {
     }
 
     _checkFirstNameWasProvided(firstName) {
-        if (firstName == '')
+        if (!firstName)
             throw 'First name is required.';
     }
 
     _checkLastNameWasProvided(lastName) {
-        if (lastName == '')
+        if (!lastName)
             throw 'Last name is required.';
     }
 
     _checkEmailWasProvided(email) {
-        if (email == '')
+        if (!email)
             throw 'E-mail is required.';
     }
 
     _checkPasswordWasProvided(password) {
-        if (password == '')
+        if (!password)
             throw 'Password is required.';
     }
 
@@ -42,6 +42,8 @@ export default class Account {
 
     add(note) {
         this._checkNoteWasProvided(note);
+        const id = this.notes.length + 1;
+        note.id = id;
         this._notes.push(note);
     }
 
@@ -53,7 +55,7 @@ export default class Account {
     }
 
     _checkNoteWasProvided(note) {
-        if (note == null || note == undefined)
+        if (!note)
             throw 'No note was provided.';
     }
 

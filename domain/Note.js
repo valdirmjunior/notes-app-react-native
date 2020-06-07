@@ -12,12 +12,12 @@ export default class Note {
     }
 
     _checkTitleWasProvided(title) {
-        if (title == '')
+        if (!title)
             throw 'Title is required.';
     }
 
     _checkNoteWasProvided(note) {
-        if (note == '')
+        if (!note)
             throw 'Note is required.';
     }
 
@@ -27,5 +27,13 @@ export default class Note {
 
     get note() {
         return this._note;
+    }
+
+    get id() {
+        return this._id;
+    }
+
+    set id(id) {
+        this._id = id;
     }
 }
