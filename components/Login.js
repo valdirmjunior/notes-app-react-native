@@ -1,11 +1,8 @@
 import React from 'react';
 import { Text, View, TextInput, TouchableOpacity, Image, Modal, KeyboardAvoidingView, Alert } from 'react-native';
-
-import styles from './LoginStyles';
-
+import Styles from './LoginStyles';
 import LoginService from '../services/LoginService';
 import SessionStorage from '../services/SessionStorage';
-
 import NewAccount from './NewAccount';
 import ForgotPassword from './ForgotPassword';
 
@@ -36,7 +33,7 @@ export default class Login extends React.Component {
 
     _loginScreen() {
         return (
-            <KeyboardAvoidingView style={styles.mainContainer}>
+            <KeyboardAvoidingView style={Styles.mainContainer}>
                 {this._logoSection()}
                 {this._loginSection()}
                 {this._forgotPasswordSection()}
@@ -50,7 +47,7 @@ export default class Login extends React.Component {
 
     _logoSection() {
         return (
-            <View style={styles.logoContainer}>
+            <View style={Styles.logoContainer}>
                 <Image source={require('../assets/logo.png')} />
             </View>
         )
@@ -58,11 +55,11 @@ export default class Login extends React.Component {
 
     _loginSection() {
         return (
-            <View style={styles.loginContainer}>
-                <TextInput style={styles.logInInput} value={this.state.email} placeholder='E-mail' onChangeText={(email) => this.setState({ email })} />
-                <TextInput style={styles.logInInput} value={this.state.password} placeholder='Password' onChangeText={(password) => this.setState({ password })} secureTextEntry />
-                <TouchableOpacity style={styles.logInButton} onPress={this._doLogin}>
-                    <Text style={styles.logInLabel}>Log In</Text>
+            <View style={Styles.loginContainer}>
+                <TextInput style={Styles.logInInput} value={this.state.email} placeholder='E-mail' onChangeText={(email) => this.setState({ email })} />
+                <TextInput style={Styles.logInInput} value={this.state.password} placeholder='Password' onChangeText={(password) => this.setState({ password })} secureTextEntry />
+                <TouchableOpacity style={Styles.logInButton} onPress={this._doLogin}>
+                    <Text style={Styles.logInLabel}>Log In</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -82,19 +79,19 @@ export default class Login extends React.Component {
 
     _forgotPasswordOrNewAccountSeparator() {
         return (
-            <View style={styles.separatorContainer}>
-                <View style={styles.separatorLine} />
-                <Text style={styles.separatorLabel}>OR</Text>
-                <View style={styles.separatorLine} />
+            <View style={Styles.separatorContainer}>
+                <View style={Styles.separatorLine} />
+                <Text style={Styles.separatorLabel}>OR</Text>
+                <View style={Styles.separatorLine} />
             </View>
         )
     }
 
     _forgotPasswordSection() {
         return (
-            <View style={styles.forgotPasswordContainer}>
+            <View style={Styles.forgotPasswordContainer}>
                 <TouchableOpacity onPress={this._openForgotPasswordForm}>
-                    <Text style={styles.forgotPasswordLabel}>Forgot Password?</Text>
+                    <Text style={Styles.forgotPasswordLabel}>Forgot Password?</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -104,8 +101,8 @@ export default class Login extends React.Component {
         return (
             <Modal animationType='slide' visible={this.state.forgotPasswordFormOpened}>
                 <ForgotPassword />
-                <TouchableOpacity style={styles.alreadyHaveAccountButton} onPress={this._closeForgotPasswordForm}>
-                    <Text style={styles.alreadyHaveAccountButtonLabel}>Cancel</Text>
+                <TouchableOpacity style={Styles.alreadyHaveAccountButton} onPress={this._closeForgotPasswordForm}>
+                    <Text style={Styles.alreadyHaveAccountButtonLabel}>Cancel</Text>
                 </TouchableOpacity>
             </Modal>
         )
@@ -121,9 +118,9 @@ export default class Login extends React.Component {
 
     _newAccountSection() {
         return (
-            <View style={styles.newAccountContainer}>
-                <TouchableOpacity style={styles.newAccountButton} onPress={this._openNewAccountForm}>
-                    <Text style={styles.newAccountLabel}>Create New Account</Text>
+            <View style={Styles.newAccountContainer}>
+                <TouchableOpacity style={Styles.newAccountButton} onPress={this._openNewAccountForm}>
+                    <Text style={Styles.newAccountLabel}>Create New Account</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -135,8 +132,8 @@ export default class Login extends React.Component {
         return (
             <Modal animationType='slide' visible={this.state.newAccountFormOpened}>
                 <NewAccount onSuccess={[closeNewAccountForm, fillLoginCredentials]} />
-                <TouchableOpacity style={styles.alreadyHaveAccountButton} onPress={this._closeNewAccountForm}>
-                    <Text style={styles.alreadyHaveAccountButtonLabel}>Already have an account?</Text>
+                <TouchableOpacity style={Styles.alreadyHaveAccountButton} onPress={this._closeNewAccountForm}>
+                    <Text style={Styles.alreadyHaveAccountButtonLabel}>Already have an account?</Text>
                 </TouchableOpacity>
             </Modal>
         )

@@ -1,24 +1,25 @@
 import React from 'react';
-import { ScrollView, View, Text, TouchableOpacity } from 'react-native';
+import { ScrollView, Text, TouchableOpacity } from 'react-native';
 import { createDrawerNavigator, createAppContainer, DrawerItems, SafeAreaView } from 'react-navigation';
+import Styles from './HomeStyles';
 import Notes from './Notes';
 
-const routes = {
+const Routes = {
     Notes: { screen: Notes }
 };
 
 const CustomDrawerComponent = props => (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={Styles.mainContainer}>
         <ScrollView>
             <DrawerItems {...props} />
-            <TouchableOpacity style={{width: '100%', paddingVertical: 12, paddingHorizontal: 16}} onPress={() => props.navigation.navigate('Login')}>
-                <Text style={{fontSize: 14, fontWeight: 'bold', color: 'grey'}}>Log Out</Text>
+            <TouchableOpacity style={Styles.logOutButton} onPress={() => props.navigation.navigate('Login')}>
+                <Text style={Styles.logOutButtonLabel}>Log Out</Text>
             </TouchableOpacity>
         </ScrollView>
     </SafeAreaView>
 );
 
-const config = {
+const Config = {
     drawerPosition: 'left',
     overlayColor: 'rgb(250, 218, 128)',
     contentComponent: CustomDrawerComponent,
@@ -27,5 +28,5 @@ const config = {
     }
 };
 
-const DrawerNavigator = createDrawerNavigator(routes, config);
+const DrawerNavigator = createDrawerNavigator(Routes, Config);
 export default createAppContainer(DrawerNavigator);

@@ -4,6 +4,7 @@ export default class SaveAccountService {
 
     save(account) {
         this._checkAccountWasProvided(account);
+        this._checkAccountDoesNotExists(account);
         this._storeAccount(account);
     }
 

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
+const Styles = StyleSheet.create({
 
     noteItemContainer: {
         flex: 1,
@@ -20,4 +20,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default styles;
+export default Styles;

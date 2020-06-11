@@ -1,8 +1,6 @@
 import React from 'react';
 import { Image, Alert, TouchableOpacity } from 'react-native';
-
-import styles from './DeleteNoteItemStyles';
-
+import Styles from './DeleteNoteItemStyles';
 import SessionStorage from '../services/SessionStorage';
 
 export default class DeleteNoteItem extends React.Component {
@@ -13,12 +11,13 @@ export default class DeleteNoteItem extends React.Component {
         this._onDelete = this.props.onDelete || [];
         this._deleteNote = this._deleteNote.bind(this);
         this._notifyListeners = this._notifyListeners.bind(this);
+        this._currentAccount = SessionStorage.getLoggedAccount();
     }
 
     render() {
         return (
             <TouchableOpacity onPress={this._deleteNote}>
-                <Image style={styles.deleteIcon} source={require('../assets/delete-icon.png')} />
+                <Image style={Styles.deleteIcon} source={require('../assets/delete-icon.png')} />
             </TouchableOpacity>
         )
     }
@@ -35,15 +34,9 @@ export default class DeleteNoteItem extends React.Component {
 
     _confirmDeletion() {
         const note = this.state.note;
-        const account = this._currentAccount();
-        account.delete(note);
+        this._currentAccount.delete(note);
         this._notifyListeners(note);
         Alert.alert('Delete Note', 'Note deleted successfully.');
-    }
-
-    _currentAccount() {
-        const loggedAccount = SessionStorage.getLoggedAccount();
-        return loggedAccount.account;
     }
 
     _notifyListeners(note) {

@@ -1,8 +1,6 @@
 import React from 'react';
 import { FlatList, SafeAreaView, View, Image, Text } from 'react-native';
-
-import styles from './NotesListStyles';
-
+import Styles from './NotesListStyles';
 import NoteItem from './NoteItem';
 
 export default class NotesList extends React.Component {
@@ -25,7 +23,7 @@ export default class NotesList extends React.Component {
         const notes = this.state.notes;
         const refreshList = (note) => this.forceUpdate();
         return (
-            <View style={styles.notesContainer}>
+            <View style={Styles.notesContainer}>
                 <SafeAreaView>
                     <FlatList
                         data={notes}
@@ -38,10 +36,10 @@ export default class NotesList extends React.Component {
 
     _noNotesContainer() {
         return (
-            <View style={styles.noNotesContainer}>
+            <View style={Styles.noNotesContainer}>
                 <Image source={require('../assets/logo.png')} />
-                <Text style={styles.noNotesTitle}>No notes yet!</Text>
-                <Text style={styles.noNotesInfo}>When you create notes, they'll appear here.</Text>
+                <Text style={Styles.noNotesTitle}>No notes yet!</Text>
+                <Text style={Styles.noNotesInfo}>When you create notes, they'll appear here.</Text>
             </View>
         )
     }

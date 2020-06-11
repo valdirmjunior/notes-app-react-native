@@ -1,8 +1,6 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, Alert, KeyboardAvoidingView } from 'react-native';
-
-import styles from './NewAccountStyles';
-
+import Styles from './NewAccountStyles';
 import Account from '../domain/Account';
 import SaveAccountService from '../services/SaveAccountService';
 
@@ -30,7 +28,7 @@ export default class NewAccount extends React.Component {
 
     _newAccountScreen() {
         return (
-            <KeyboardAvoidingView style={styles.mainContainer} behavior='padding'>
+            <KeyboardAvoidingView style={Styles.mainContainer} behavior='padding'>
                 {this._logoSection()}
                 {this._newAccountSection()}
             </KeyboardAvoidingView>
@@ -39,7 +37,7 @@ export default class NewAccount extends React.Component {
 
     _logoSection() {
         return (
-            <View style={styles.logoContainer}>
+            <View style={Styles.logoContainer}>
                 <Image source={require('../assets/logo.png')} />
             </View>
         )
@@ -47,13 +45,13 @@ export default class NewAccount extends React.Component {
 
     _newAccountSection() {
         return (
-            <View style={styles.newAccountContainer}>
-                <TextInput style={styles.newAccountInput} placeholder='First name' value={this.state.firstName} onChangeText={(firstName) => this.setState({ firstName })} />
-                <TextInput style={styles.newAccountInput} placeholder='Last name' value={this.state.lastName} onChangeText={(lastName) => this.setState({ lastName })} />
-                <TextInput style={styles.newAccountInput} placeholder='E-mail' value={this.state.email} onChangeText={(email) => this.setState({ email })} />
-                <TextInput style={styles.newAccountInput} placeholder='Password' value={this.state.password} onChangeText={(password) => this.setState({ password })} secureTextEntry />
-                <TouchableOpacity style={styles.saveAccountButton} onPress={this._saveAccount}>
-                    <Text style={styles.saveAccountLabel}>Save</Text>
+            <View style={Styles.newAccountContainer}>
+                <TextInput style={Styles.newAccountInput} placeholder='First name' value={this.state.firstName} onChangeText={(firstName) => this.setState({ firstName })} />
+                <TextInput style={Styles.newAccountInput} placeholder='Last name' value={this.state.lastName} onChangeText={(lastName) => this.setState({ lastName })} />
+                <TextInput style={Styles.newAccountInput} placeholder='E-mail' value={this.state.email} onChangeText={(email) => this.setState({ email })} />
+                <TextInput style={Styles.newAccountInput} placeholder='Password' value={this.state.password} onChangeText={(password) => this.setState({ password })} secureTextEntry />
+                <TouchableOpacity style={Styles.saveAccountButton} onPress={this._saveAccount}>
+                    <Text style={Styles.saveAccountLabel}>Save</Text>
                 </TouchableOpacity>
             </View>
         )

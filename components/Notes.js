@@ -1,11 +1,8 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Modal } from 'react-native';
-
-import styles from './NotesStyles';
-
+import Styles from './NotesStyles';
 import NewNote from './NewNote';
 import NotesList from './NotesList';
-
 import SessionStorage from '../services/SessionStorage';
 
 export default class Notes extends React.Component {
@@ -18,12 +15,12 @@ export default class Notes extends React.Component {
         super(props);
         this._openNewNoteForm = this._openNewNoteForm.bind(this);
         this._closeNewNoteForm = this._closeNewNoteForm.bind(this);
-        this._currentAccount = this._currentAccount.bind(this);
+        this._currentAccount = SessionStorage.getLoggedAccount();
     }
 
     render() {
         return (
-            <View style={styles.mainContainer}>
+            <View style={Styles.mainContainer}>
                 {this._notesSection()}
                 {this._newNoteSection()}
                 {this._newNoteFormSection()}
@@ -32,16 +29,15 @@ export default class Notes extends React.Component {
     }
 
     _notesSection() {
-        const account = this._currentAccount();
-        const notes = account.notes;
+        const notes = this._currentAccount.notes;
         return <NotesList notes={notes} />
     }
 
     _newNoteSection() {
         return (
-            <View style={styles.newNoteContainer}>
-                <TouchableOpacity style={styles.newNoteButton} onPress={this._openNewNoteForm}>
-                    <Text style={styles.newNoteButtonLabel}>New Note</Text>
+            <View style={Styles.newNoteContainer}>
+                <TouchableOpacity style={Styles.newNoteButton} onPress={this._openNewNoteForm}>
+                    <Text style={Styles.newNoteButtonLabel}>New Note</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -51,8 +47,8 @@ export default class Notes extends React.Component {
         return (
             <Modal animationType='slide' visible={this.state.newNoteFormOpened}>
                 <NewNote />
-                <TouchableOpacity style={styles.cancelNewNoteButton} onPress={this._closeNewNoteForm}>
-                    <Text style={styles.cancelNewNoteButtonLabel}>Cancel</Text>
+                <TouchableOpacity style={Styles.cancelNewNoteButton} onPress={this._closeNewNoteForm}>
+                    <Text style={Styles.cancelNewNoteButtonLabel}>Cancel</Text>
                 </TouchableOpacity>
             </Modal>
         )
@@ -64,11 +60,6 @@ export default class Notes extends React.Component {
 
     _closeNewNoteForm() {
         this.setState({ newNoteFormOpened: false });
-    }
-
-    _currentAccount() {
-        const loggedAccount = SessionStorage.getLoggedAccount();
-        return loggedAccount.account;
     }
 }
 

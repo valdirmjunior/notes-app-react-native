@@ -1,8 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-
-import styles from './NoteItemStyles';
-
+import Styles from './NoteItemStyles';
 import DeleteNoteItem from './DeleteNoteItem';
 
 export default class NoteItem extends React.Component {
@@ -15,11 +13,11 @@ export default class NoteItem extends React.Component {
     render() {
         const note = this.state.note;
         return (
-            <View style={styles.noteItemContainer}>
-                <Text style={styles.noteTitle}>
+            <View style={Styles.noteItemContainer}>
+                <Text style={Styles.noteTitle}>
                     {note.title}
                 </Text>
-                <View style={styles.deleteNoteContainer}>
+                <View style={Styles.deleteNoteContainer}>
                     <DeleteNoteItem note={note} onDelete={this.props.onDelete} />
                 </View>
             </View>
