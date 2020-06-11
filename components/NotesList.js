@@ -30,7 +30,7 @@ export default class NotesList extends React.Component {
                     <FlatList
                         data={notes}
                         renderItem={note => <NoteItem note={note.item} onDelete={[refreshList]} />}
-                        keyExtractor={(note, index) => index.toString()} />
+                        keyExtractor={(note) => note.id.toString()} />
                 </SafeAreaView>
             </View>
         )

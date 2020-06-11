@@ -28,7 +28,6 @@ export default class Login extends React.Component {
         this._closeForgotPasswordForm = this._closeForgotPasswordForm.bind(this);
         this._fillLoginCredentials = this._fillLoginCredentials.bind(this);
         this._doLogin = this._doLogin.bind(this);
-        this._alert = this._alert.bind(this);
     }
 
     render() {
@@ -77,7 +76,7 @@ export default class Login extends React.Component {
             SessionStorage.setLoggedAccount(loggedAccount);
             this._navigator.navigate('Home');
         } catch (error) {
-            this._alert(error);
+            Alert.alert('Log In', error);
         }
     }
 
@@ -153,9 +152,5 @@ export default class Login extends React.Component {
 
     _closeNewAccountForm() {
         this.setState({ newAccountFormOpened: false });
-    }
-
-    _alert(message) {
-        Alert.alert('Log In', message);
     }
 }

@@ -25,14 +25,20 @@ export default class DeleteNoteItem extends React.Component {
 
     _deleteNote() {
         try {
-            const note = this.state.note;
-            const account = this._currentAccount();
-            account.delete(note);
-            this._notifyListeners(note);
-            this._alert('Note deleted successfully.');
+            const yesButton = { text: 'Yes', onPress: () => { this._confirmDeletion() } };
+            const noButton = { text: 'No', onPress: () => { } };
+            Alert.alert('Delete Note', 'Do you want to delete this note?', [yesButton, noButton]);
         } catch (error) {
-            this._alert(error);
+            Alert.alert('Delete Note', error);
         }
+    }
+
+    _confirmDeletion() {
+        const note = this.state.note;
+        const account = this._currentAccount();
+        account.delete(note);
+        this._notifyListeners(note);
+        Alert.alert('Delete Note', 'Note deleted successfully.');
     }
 
     _currentAccount() {
@@ -42,9 +48,5 @@ export default class DeleteNoteItem extends React.Component {
 
     _notifyListeners(note) {
         this._onDelete.forEach(onDelete => onDelete(note));
-    }
-
-    _alert(message) {
-        Alert.alert('Delete Note', message);
     }
 }

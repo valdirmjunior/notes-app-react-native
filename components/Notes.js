@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, Modal, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, Modal } from 'react-native';
 
 import styles from './NotesStyles';
 

@@ -52,9 +52,9 @@ export default class NewNote extends React.Component {
             account.add(note);
             this._cleanNoteForm();
             this._notifyListeners(note);
-            this._alert('Note saved successfully!');
+            Alert.alert('New Note', 'Note saved successfully!');
         } catch (error) {
-            this._alert(error);
+            Alert.alert('New Note', error);
         }
     }
 
@@ -77,9 +77,5 @@ export default class NewNote extends React.Component {
 
     _notifyListeners(note) {
         this._onSuccess.forEach(onSuccess => onSuccess(note));
-    }
-
-    _alert(message) {
-        Alert.alert('New Note', message);
     }
 }

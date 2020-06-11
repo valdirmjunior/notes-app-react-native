@@ -7,6 +7,7 @@ export default class Account {
         this._email = email;
         this._password = password;
         this._notes = [];
+        this._notesIndex = 0;
     }
 
     _checkAccountIsValid(firstName, lastName, email, password) {
@@ -36,27 +37,32 @@ export default class Account {
             throw 'Password is required.';
     }
 
+    _checkNoteWasProvided(note) {
+        if (!note)
+            throw 'No note was provided.';
+    }
+
     hasNotes() {
         return this._notes.length > 0;
     }
 
     add(note) {
         this._checkNoteWasProvided(note);
-        const id = this.notes.length + 1;
-        note.id = id;
+        note.id = ++this._notesIndex;
         this._notes.push(note);
     }
 
     delete(note) {
         this._checkNoteWasProvided(note);
-        const index = this._notes.indexOf(note);
-        if (index > -1)
-            this._notes.splice(index, 1);
-    }
-
-    _checkNoteWasProvided(note) {
-        if (!note)
-            throw 'No note was provided.';
+        let indexToRemove = -1;
+        this._notes.forEach((value, index) => {
+            if (value.id === note.id) {
+                indexToRemove = index;
+            }
+        });
+        if (indexToRemove === -1)
+            throw 'Note not found!';
+        this._notes.splice(indexToRemove, 1);
     }
 
     get firstName() {

@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
     },
 
     noteTitle: {
+        flex: 1,
         fontSize: 20,
         padding: 10,
         flexGrow: 3

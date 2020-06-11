@@ -65,9 +65,9 @@ export default class NewAccount extends React.Component {
             this._saveAccountService.save(account);
             this._cleanAccountForm();
             this._notifyListeners(account);
-            this._alert('Account saved successfully!');
+            Alert.alert('New Account', 'Account saved successfully!');
         } catch (error) {
-            this._alert(error);
+            Alert.alert('New Account', error);
         }
     }
 
@@ -89,9 +89,5 @@ export default class NewAccount extends React.Component {
 
     _notifyListeners(account) {
         this._onSuccess.forEach(onSuccess => onSuccess(account));
-    }
-
-    _alert(message) {
-        Alert.alert('New Account', message);
     }
 }
