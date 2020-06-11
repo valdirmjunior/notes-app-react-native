@@ -1,8 +1,7 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, Alert, KeyboardAvoidingView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import Styles from './NewAccountStyles';
-import Account from '../domain/Account';
-import SaveAccountService from '../services/SaveAccountService';
+import NewAccountController from '../controllers/NewAccountController';
 
 export default class NewAccount extends React.Component {
 
@@ -15,11 +14,7 @@ export default class NewAccount extends React.Component {
 
     constructor(props) {
         super(props);
-        this._saveAccountService = new SaveAccountService();
-        this._onSuccess = this.props.onSuccess || [];
-        this._saveAccount = this._saveAccount.bind(this);
-        this._createAccount = this._createAccount.bind(this);
-        this._notifyListeners = this._notifyListeners.bind(this);
+        this._controller = new NewAccountController(this);
     }
 
     render() {
@@ -45,47 +40,37 @@ export default class NewAccount extends React.Component {
 
     _newAccountSection() {
         return (
-            <View style={Styles.newAccountContainer}>
-                <TextInput style={Styles.newAccountInput} placeholder='First name' value={this.state.firstName} onChangeText={(firstName) => this.setState({ firstName })} />
-                <TextInput style={Styles.newAccountInput} placeholder='Last name' value={this.state.lastName} onChangeText={(lastName) => this.setState({ lastName })} />
-                <TextInput style={Styles.newAccountInput} placeholder='E-mail' value={this.state.email} onChangeText={(email) => this.setState({ email })} />
-                <TextInput style={Styles.newAccountInput} placeholder='Password' value={this.state.password} onChangeText={(password) => this.setState({ password })} secureTextEntry />
-                <TouchableOpacity style={Styles.saveAccountButton} onPress={this._saveAccount}>
-                    <Text style={Styles.saveAccountLabel}>Save</Text>
-                </TouchableOpacity>
-            </View>
+            <TouchableWithoutFeedback accessible={false} onPress={() => Keyboard.dismiss()}>
+                <View style={Styles.newAccountContainer}>
+                    <TextInput style={Styles.newAccountInput} placeholder='First name' value={this.state.firstName} onChangeText={this._handleFirstNameInput} />
+                    <TextInput style={Styles.newAccountInput} placeholder='Last name' value={this.state.lastName} onChangeText={this._handleLastName} />
+                    <TextInput style={Styles.newAccountInput} placeholder='E-mail' value={this.state.email} onChangeText={this._handleEmailInput} />
+                    <TextInput style={Styles.newAccountInput} placeholder='Password' value={this.state.password} onChangeText={this._handlePasswordInput} secureTextEntry />
+                    <TouchableOpacity style={Styles.saveAccountButton} onPress={this._saveAccount}>
+                        <Text style={Styles.saveAccountLabel}>Save</Text>
+                    </TouchableOpacity>
+                </View>
+            </TouchableWithoutFeedback>
         )
     }
 
-    _saveAccount() {
-        try {
-            const account = this._createAccount();
-            this._saveAccountService.save(account);
-            this._cleanAccountForm();
-            this._notifyListeners(account);
-            Alert.alert('New Account', 'Account saved successfully!');
-        } catch (error) {
-            Alert.alert('New Account', error);
-        }
+    _saveAccount = () => {
+        this._controller.saveAccount();
     }
 
-    _createAccount() {
-        const firstName = this.state.firstName;
-        const lastName = this.state.lastName;
-        const email = this.state.email;
-        const password = this.state.password;
-        return new Account(firstName, lastName, email, password, []);
+    _handleLastName = (lastName) => {
+        this.setState({ lastName });
     }
 
-    _cleanAccountForm() {
-        const firstName = '';
-        const lastName = '';
-        const email = '';
-        const password = '';
-        this.setState({ firstName, lastName, email, password });
+    _handleFirstNameInput = (firstName) => {
+        this.setState({ firstName });
     }
 
-    _notifyListeners(account) {
-        this._onSuccess.forEach(onSuccess => onSuccess(account));
+    _handleEmailInput = (email) => {
+        this.setState({ email });
+    }
+
+    _handlePasswordInput = (password) => {
+        this.setState({ password });
     }
 }

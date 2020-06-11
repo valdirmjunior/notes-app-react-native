@@ -25,8 +25,8 @@ export default class NewNote extends React.Component {
                 </View>
                 <TouchableWithoutFeedback accessible={false} onPress={() => Keyboard.dismiss()}>
                     <View style={Styles.newNoteContainer}>
-                        <TextInput style={Styles.newNoteTitle} value={this.state.note.title} placeholder='Title' onChangeText={(title) => this.setState({ note: { ...this.state.note, title } })} />
-                        <TextInput style={Styles.newNoteInput} value={this.state.note.note} placeholder='Type your note here' onChangeText={(note) => this.setState({ note: { ...this.state.note, note } })} multiline={true} numberOfLines={5} />
+                        <TextInput style={Styles.newNoteTitle} value={this.state.note.title} placeholder='Title' onChangeText={this._handleTitleInputChanges} />
+                        <TextInput style={Styles.newNoteInput} value={this.state.note.note} placeholder='Type your note here' onChangeText={this._handleNoteInputChanges} multiline={true} numberOfLines={5} />
                         <TouchableOpacity style={Styles.saveNoteButton} onPress={this._saveNote}>
                             <Text style={Styles.saveNoteButtonLabel}>Save</Text>
                         </TouchableOpacity>
@@ -34,6 +34,14 @@ export default class NewNote extends React.Component {
                 </TouchableWithoutFeedback>
             </KeyboardAvoidingView>
         )
+    }
+
+    _handleTitleInputChanges = (title) => {
+        this.setState({ note: { ...this.state.note, title } });
+    }
+
+    _handleNoteInputChanges = (note) => {
+        this.setState({ note: { ...this.state.note, note } });
     }
 
     _saveNote = () => {
