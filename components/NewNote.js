@@ -1,8 +1,7 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert, TouchableWithoutFeedback, Keyboard, Image, KeyboardAvoidingView } from 'react-native';
-import SessionStorage from '../services/SessionStorage';
-import Note from '../domain/Note';
+import { View, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Image, KeyboardAvoidingView } from 'react-native';
 import Styles from './NewNoteStyles';
+import NewNoteController from '../controllers/NewNoteController';
 
 export default class NewNote extends React.Component {
 
@@ -15,12 +14,7 @@ export default class NewNote extends React.Component {
 
     constructor(props) {
         super(props);
-        this._onSuccess = this.props.onSuccess || [];
-        this._saveNote = this._saveNote.bind(this);
-        this._createNote = this._createNote.bind(this);
-        this._cleanNoteForm = this._cleanNoteForm.bind(this);
-        this._notifyListeners = this._notifyListeners.bind(this);
-        this._currentAccount = SessionStorage.getLoggedAccount();
+        this._controller = new NewNoteController(this);
     }
 
     render() {
@@ -42,31 +36,7 @@ export default class NewNote extends React.Component {
         )
     }
 
-    _saveNote() {
-        try {
-            const note = this._createNote();
-            this._currentAccount.add(note);
-            this._cleanNoteForm();
-            this._notifyListeners(note);
-            Alert.alert('New Note', 'Note saved successfully!');
-        } catch (error) {
-            Alert.alert('New Note', error);
-        }
-    }
-
-    _createNote() {
-        const title = this.state.note.title;
-        const note = this.state.note.note;
-        return new Note(title, note);
-    }
-
-    _cleanNoteForm() {
-        const title = '';
-        const note = '';
-        this.setState({ note: { title, note } });
-    }
-
-    _notifyListeners(note) {
-        this._onSuccess.forEach(onSuccess => onSuccess(note));
+    _saveNote = () => {
+        this._controller.saveNote();
     }
 }
