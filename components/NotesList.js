@@ -8,6 +8,7 @@ export default class NotesList extends React.Component {
     constructor(props) {
         super(props);
         this.state = { notes: this.props.notes }
+        console.log(this.props);
     }
 
     render() {

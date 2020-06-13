@@ -6,10 +6,12 @@ import NewAccountController from '../controllers/NewAccountController';
 export default class NewAccount extends React.Component {
 
     state = {
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: ''
+        account: {
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: ''
+        }
     }
 
     constructor(props) {
@@ -24,33 +26,21 @@ export default class NewAccount extends React.Component {
     _newAccountScreen() {
         return (
             <KeyboardAvoidingView style={Styles.mainContainer} behavior='padding'>
-                {this._logoSection()}
-                {this._newAccountSection()}
-            </KeyboardAvoidingView>
-        )
-    }
-
-    _logoSection() {
-        return (
-            <View style={Styles.logoContainer}>
-                <Image source={require('../assets/logo.png')} />
-            </View>
-        )
-    }
-
-    _newAccountSection() {
-        return (
-            <TouchableWithoutFeedback accessible={false} onPress={() => Keyboard.dismiss()}>
-                <View style={Styles.newAccountContainer}>
-                    <TextInput style={Styles.newAccountInput} placeholder='First name' value={this.state.firstName} onChangeText={this._handleFirstNameInput} />
-                    <TextInput style={Styles.newAccountInput} placeholder='Last name' value={this.state.lastName} onChangeText={this._handleLastName} />
-                    <TextInput style={Styles.newAccountInput} placeholder='E-mail' value={this.state.email} onChangeText={this._handleEmailInput} />
-                    <TextInput style={Styles.newAccountInput} placeholder='Password' value={this.state.password} onChangeText={this._handlePasswordInput} secureTextEntry />
-                    <TouchableOpacity style={Styles.saveAccountButton} onPress={this._saveAccount}>
-                        <Text style={Styles.saveAccountLabel}>Save</Text>
-                    </TouchableOpacity>
+                <View style={Styles.logoContainer}>
+                    <Image source={require('../assets/logo.png')} />
                 </View>
-            </TouchableWithoutFeedback>
+                <TouchableWithoutFeedback accessible={false} onPress={() => Keyboard.dismiss()}>
+                    <View style={Styles.newAccountContainer}>
+                        <TextInput style={Styles.newAccountInput} placeholder='First name' value={this.state.account.firstName} onChangeText={this._handleFirstNameInput} />
+                        <TextInput style={Styles.newAccountInput} placeholder='Last name' value={this.state.account.lastName} onChangeText={this._handleLastName} />
+                        <TextInput style={Styles.newAccountInput} placeholder='E-mail' value={this.state.account.email} onChangeText={this._handleEmailInput} />
+                        <TextInput style={Styles.newAccountInput} placeholder='Password' value={this.state.account.password} onChangeText={this._handlePasswordInput} secureTextEntry />
+                        <TouchableOpacity style={Styles.saveAccountButton} onPress={this._saveAccount}>
+                            <Text style={Styles.saveAccountLabel}>Save</Text>
+                        </TouchableOpacity>
+                    </View>
+                </TouchableWithoutFeedback>
+            </KeyboardAvoidingView>
         )
     }
 
@@ -59,18 +49,18 @@ export default class NewAccount extends React.Component {
     }
 
     _handleLastName = (lastName) => {
-        this.setState({ lastName });
+        this.setState({ account: { ...this.state.account, lastName } });
     }
 
     _handleFirstNameInput = (firstName) => {
-        this.setState({ firstName });
+        this.setState({ account: { ...this.state.account, firstName } });
     }
 
     _handleEmailInput = (email) => {
-        this.setState({ email });
+        this.setState({ account: { ...this.state.account, email } });
     }
 
     _handlePasswordInput = (password) => {
-        this.setState({ password });
+        this.setState({ account: { ...this.state.account, password } });
     }
 }

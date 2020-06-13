@@ -19,46 +19,31 @@ export default class Notes extends React.Component {
     }
 
     render() {
+        const notes = this._currentAccount.notes;
         return (
             <View style={Styles.mainContainer}>
-                {this._notesSection()}
-                {this._newNoteSection()}
-                {this._newNoteFormSection()}
+                <NotesList notes={notes}>
+                </NotesList>
+                <View style={Styles.newNoteContainer}>
+                    <TouchableOpacity style={Styles.newNoteButton} onPress={this._openNewNoteForm}>
+                        <Text style={Styles.newNoteButtonLabel}>New Note</Text>
+                    </TouchableOpacity>
+                </View>
+                <Modal animationType='slide' visible={this.state.newNoteFormOpened}>
+                    <NewNote />
+                    <TouchableOpacity style={Styles.cancelNewNoteButton} onPress={this._closeNewNoteForm}>
+                        <Text style={Styles.cancelNewNoteButtonLabel}>Cancel</Text>
+                    </TouchableOpacity>
+                </Modal>
             </View>
         )
     }
 
-    _notesSection() {
-        const notes = this._currentAccount.notes;
-        return <NotesList notes={notes} />
-    }
-
-    _newNoteSection() {
-        return (
-            <View style={Styles.newNoteContainer}>
-                <TouchableOpacity style={Styles.newNoteButton} onPress={this._openNewNoteForm}>
-                    <Text style={Styles.newNoteButtonLabel}>New Note</Text>
-                </TouchableOpacity>
-            </View>
-        )
-    }
-
-    _newNoteFormSection() {
-        return (
-            <Modal animationType='slide' visible={this.state.newNoteFormOpened}>
-                <NewNote />
-                <TouchableOpacity style={Styles.cancelNewNoteButton} onPress={this._closeNewNoteForm}>
-                    <Text style={Styles.cancelNewNoteButtonLabel}>Cancel</Text>
-                </TouchableOpacity>
-            </Modal>
-        )
-    }
-
-    _openNewNoteForm() {
+    _openNewNoteForm = () => {
         this.setState({ newNoteFormOpened: true });
     }
 
-    _closeNewNoteForm() {
+    _closeNewNoteForm = () => {
         this.setState({ newNoteFormOpened: false });
     }
 }

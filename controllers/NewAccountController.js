@@ -25,10 +25,10 @@ export default class NewAccountController {
     }
 
     _createAccount() {
-        const firstName = this._view.state.firstName;
-        const lastName = this._view.state.lastName;
-        const email = this._view.state.email;
-        const password = this._view.state.password;
+        const firstName = this._view.state.account.firstName;
+        const lastName = this._view.state.account.lastName;
+        const email = this._view.state.account.email;
+        const password = this._view.state.account.password;
         return new Account(firstName, lastName, email, password);
     }
 
@@ -37,12 +37,12 @@ export default class NewAccountController {
         const lastName = '';
         const email = '';
         const password = '';
-        this._view.setState({ firstName, lastName, email, password });
+        this._view.setState({ account: { firstName, lastName, email, password } });
     }
 
     _notifyListeners(account) {
         const listeners = this._view.props.onSuccess || [];
-        listeners.onSuccess.forEach(onSuccess => onSuccess(account));
+        listeners.forEach(onSuccess => onSuccess(account));
     }
 
     _alert(message) {
