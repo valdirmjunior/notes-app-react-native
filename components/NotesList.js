@@ -7,12 +7,10 @@ export default class NotesList extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { notes: this.props.notes }
-        console.log(this.props);
     }
 
     render() {
-        const notes = this.state.notes;
+        const notes = this.props.notes;
         return (
             notes.length > 0 ?
                 this._notesContainer() :
@@ -21,7 +19,7 @@ export default class NotesList extends React.Component {
     }
 
     _notesContainer() {
-        const notes = this.state.notes;
+        const notes = this.props.notes;
         const refreshList = (note) => this.forceUpdate();
         return (
             <View style={Styles.notesContainer}>

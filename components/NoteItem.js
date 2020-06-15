@@ -7,18 +7,18 @@ export default class NoteItem extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { note: this.props.note }
     }
 
     render() {
-        const note = this.state.note;
+        const note = this.props.note;
+        const onDelete = this.props.onDelete;
         return (
             <View style={Styles.noteItemContainer}>
                 <Text style={Styles.noteTitle}>
                     {note.title}
                 </Text>
                 <View style={Styles.deleteNoteContainer}>
-                    <DeleteNoteItem note={note} onDelete={this.props.onDelete} />
+                    <DeleteNoteItem note={note} onDelete={onDelete} />
                 </View>
             </View>
         )

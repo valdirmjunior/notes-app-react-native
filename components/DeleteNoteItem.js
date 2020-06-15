@@ -7,7 +7,6 @@ export default class DeleteNoteItem extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { note: this.props.note }
         this._controller = new DeleteItemController(this);
     }
 

@@ -20,7 +20,7 @@ export default class NewNoteController {
     }
 
     _delete() {
-        const note = this._view.state.note;
+        const note = this._view.props.note;
         this._currentAccount.delete(note);
         this._notifyListeners(note);
         this._alert('Note deleted successfully.');
