@@ -1,9 +1,15 @@
 import React from 'react';
-import { FlatList, SafeAreaView, View, Image, Text } from 'react-native';
+import { FlatList, SafeAreaView, View, Image, Text, Modal, TouchableOpacity } from 'react-native';
 import Styles from './NotesListStyles';
 import NoteItem from './NoteItem';
+import ViewNote from './ViewNote';
 
 export default class NotesList extends React.Component {
+
+    state = {
+        viewingNote: null,
+        viewNoteFormOpened: false
+    }
 
     constructor(props) {
         super(props);
@@ -26,11 +32,25 @@ export default class NotesList extends React.Component {
                 <SafeAreaView>
                     <FlatList
                         data={notes}
-                        renderItem={note => <NoteItem note={note.item} onDelete={[refreshList]} />}
+                        renderItem={note => <NoteItem note={note.item} onDelete={[refreshList]} viewItem={this._openViewNotForm} />}
                         keyExtractor={(note) => note.id.toString()} />
                 </SafeAreaView>
+                <Modal animationType='slide' visible={this.state.viewNoteFormOpened}>
+                    <ViewNote note={this.state.viewingNote} />
+                    <TouchableOpacity style={Styles.viewNoteButton} onPress={this._closeViewNoteForm}>
+                        <Text style={Styles.viewNoteButtonLabel}>Close</Text>
+                    </TouchableOpacity>
+                </Modal>
             </View>
         )
+    }
+
+    _openViewNotForm = (note) => {
+        this.setState({ viewNoteFormOpened: true, viewingNote: note })
+    }
+
+    _closeViewNoteForm = () => {
+        this.setState({ viewNoteFormOpened: false })
     }
 
     _noNotesContainer() {

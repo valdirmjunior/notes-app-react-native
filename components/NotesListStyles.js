@@ -38,6 +38,19 @@ const Styles = StyleSheet.create({
         textAlign: 'center',
         marginTop: 5,
         color: 'grey'
+    },
+
+    viewNoteButton: {
+        width: '100%',
+        padding: 13,
+        backgroundColor: 'rgb(247, 247, 247)'
+    },
+
+    viewNoteButtonLabel: {
+        textAlign: 'center',
+        fontWeight: 'bold',
+        color: 'rgb(244, 182, 6)',
+        fontSize: 17
     }
 })
 

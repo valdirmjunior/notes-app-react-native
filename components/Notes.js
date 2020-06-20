@@ -22,8 +22,7 @@ export default class Notes extends React.Component {
         const notes = this._currentAccount.notes;
         return (
             <View style={Styles.mainContainer}>
-                <NotesList notes={notes}>
-                </NotesList>
+                <NotesList notes={notes} />
                 <View style={Styles.newNoteContainer}>
                     <TouchableOpacity style={Styles.newNoteButton} onPress={this._openNewNoteForm}>
                         <Text style={Styles.newNoteButtonLabel}>New Note</Text>

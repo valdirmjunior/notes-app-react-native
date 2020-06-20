@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import Styles from './NoteItemStyles';
 import DeleteNoteItem from './DeleteNoteItem';
 
@@ -13,14 +13,16 @@ export default class NoteItem extends React.Component {
         const note = this.props.note;
         const onDelete = this.props.onDelete;
         return (
-            <View style={Styles.noteItemContainer}>
-                <Text style={Styles.noteTitle}>
-                    {note.title}
-                </Text>
-                <View style={Styles.deleteNoteContainer}>
-                    <DeleteNoteItem note={note} onDelete={onDelete} />
+            <TouchableOpacity onPress={() => this.props.viewItem(note)}>
+                <View style={Styles.noteItemContainer}>
+                    <Text style={Styles.noteTitle}>
+                        {note.title}
+                    </Text>
+                    <View style={Styles.deleteNoteContainer}>
+                        <DeleteNoteItem note={note} onDelete={onDelete} />
+                    </View>
                 </View>
-            </View>
+            </TouchableOpacity >
         )
     }
 }
