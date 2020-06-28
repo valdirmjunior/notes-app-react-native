@@ -1,6 +1,6 @@
+import { Alert } from 'react-native';
 import Account from '../domain/Account';
 import SaveAccountService from '../services/SaveAccountService';
-import { Alert } from 'react-native';
 
 export default class NewAccountController {
 

@@ -1,5 +1,5 @@
-import SessionStorage from '../services/SessionStorage';
 import { Alert } from 'react-native';
+import SessionStorage from '../services/SessionStorage';
 
 export default class NewNoteController {
 

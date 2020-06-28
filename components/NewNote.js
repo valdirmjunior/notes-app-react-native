@@ -19,11 +19,11 @@ export default class NewNote extends React.Component {
 
     render() {
         return (
-            <KeyboardAvoidingView style={Styles.mainContainer} behavior='padding'>
-                <View style={Styles.logoContainer}>
-                    <Image source={require('../assets/logo.png')} />
-                </View>
-                <TouchableWithoutFeedback accessible={false} onPress={() => Keyboard.dismiss()}>
+            <TouchableWithoutFeedback accessible={false} onPress={() => Keyboard.dismiss()}>
+                <KeyboardAvoidingView style={Styles.mainContainer} behavior='padding'>
+                    <View style={Styles.logoContainer}>
+                        <Image source={require('../assets/logo.png')} />
+                    </View>
                     <View style={Styles.newNoteContainer}>
                         <TextInput style={Styles.newNoteTitle} value={this.state.note.title} placeholder='Title' onChangeText={this._handleTitleInputChanges} />
                         <TextInput style={Styles.newNoteInput} value={this.state.note.note} placeholder='Type your note here' onChangeText={this._handleNoteInputChanges} multiline={true} numberOfLines={5} />
@@ -31,8 +31,8 @@ export default class NewNote extends React.Component {
                             <Text style={Styles.saveNoteButtonLabel}>Save</Text>
                         </TouchableOpacity>
                     </View>
-                </TouchableWithoutFeedback>
-            </KeyboardAvoidingView>
+                </KeyboardAvoidingView>
+            </TouchableWithoutFeedback>
         )
     }
 

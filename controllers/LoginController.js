@@ -1,5 +1,5 @@
-import SessionStorage from '../services/SessionStorage';
 import { Alert } from 'react-native';
+import SessionStorage from '../services/SessionStorage';
 import LoginService from '../services/LoginService';
 
 export default class LoginController {
@@ -15,7 +15,7 @@ export default class LoginController {
             const password = this._view.state.password;
             const loggedAccount = this._loginService.login(email, password);
             SessionStorage.setLoggedAccount(loggedAccount);
-            this._view.props.navigate('Home');
+            this._view.props.navigation.navigate('Home');
         } catch (error) {
             this._alert(error);
         }

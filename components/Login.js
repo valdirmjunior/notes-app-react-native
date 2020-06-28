@@ -29,75 +29,56 @@ export default class Login extends React.Component {
     }
 
     _loginScreen() {
+        const closeNewAccountForm = (account) => this._closeNewAccountForm();
+        const fillLoginCredentials = (account) => this._fillLoginCredentials(account);
         return (
             <TouchableWithoutFeedback accessible={false} onPress={() => Keyboard.dismiss()}>
                 <KeyboardAvoidingView style={Styles.mainContainer}>
                     <StatusBar hidden />
-                    {this._logoSection()}
-                    {this._loginSection()}
-                    {this._forgotPasswordSection()}
-                    {this._forgotPasswordFormSection()}
-                    {this._forgotPasswordOrNewAccountSeparator()}
-                    {this._newAccountSection()}
-                    {this._newAccountFormSection()}
+                    <View style={Styles.logoContainer}>
+                        <Image source={require('../assets/logo.png')} />
+                    </View>
+                    <View style={Styles.loginContainer}>
+                        <TextInput style={Styles.logInInput} value={this.state.email} placeholder='E-mail' onChangeText={(email) => this.setState({ email })} />
+                        <TextInput style={Styles.logInInput} value={this.state.password} placeholder='Password' onChangeText={(password) => this.setState({ password })} secureTextEntry />
+                        <TouchableOpacity style={Styles.logInButton} onPress={this._doLogin}>
+                            <Text style={Styles.logInLabel}>Log In</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={Styles.forgotPasswordContainer}>
+                        <TouchableOpacity onPress={this._openForgotPasswordForm}>
+                            <Text style={Styles.forgotPasswordLabel}>Forgot Password?</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <Modal animationType='slide' visible={this.state.forgotPasswordFormOpened}>
+                        <ForgotPassword />
+                        <TouchableOpacity style={Styles.alreadyHaveAccountButton} onPress={this._closeForgotPasswordForm}>
+                            <Text style={Styles.alreadyHaveAccountButtonLabel}>Cancel</Text>
+                        </TouchableOpacity>
+                    </Modal>
+                    <View style={Styles.separatorContainer}>
+                        <View style={Styles.separatorLine} />
+                        <Text style={Styles.separatorLabel}>OR</Text>
+                        <View style={Styles.separatorLine} />
+                    </View>
+                    <View style={Styles.newAccountContainer}>
+                        <TouchableOpacity style={Styles.newAccountButton} onPress={this._openNewAccountForm}>
+                            <Text style={Styles.newAccountLabel}>Create New Account</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <Modal animationType='slide' visible={this.state.newAccountFormOpened}>
+                        <NewAccount onSuccess={[closeNewAccountForm, fillLoginCredentials]} />
+                        <TouchableOpacity style={Styles.alreadyHaveAccountButton} onPress={this._closeNewAccountForm}>
+                            <Text style={Styles.alreadyHaveAccountButtonLabel}>Already have an account?</Text>
+                        </TouchableOpacity>
+                    </Modal>
                 </KeyboardAvoidingView>
             </TouchableWithoutFeedback>
         )
     }
 
-    _logoSection() {
-        return (
-            <View style={Styles.logoContainer}>
-                <Image source={require('../assets/logo.png')} />
-            </View>
-        )
-    }
-
-    _loginSection() {
-        return (
-            <View style={Styles.loginContainer}>
-                <TextInput style={Styles.logInInput} value={this.state.email} placeholder='E-mail' onChangeText={(email) => this.setState({ email })} />
-                <TextInput style={Styles.logInInput} value={this.state.password} placeholder='Password' onChangeText={(password) => this.setState({ password })} secureTextEntry />
-                <TouchableOpacity style={Styles.logInButton} onPress={this._doLogin}>
-                    <Text style={Styles.logInLabel}>Log In</Text>
-                </TouchableOpacity>
-            </View>
-        )
-    }
-
     _doLogin = () => {
         this._controller.login();
-    }
-
-    _forgotPasswordOrNewAccountSeparator() {
-        return (
-            <View style={Styles.separatorContainer}>
-                <View style={Styles.separatorLine} />
-                <Text style={Styles.separatorLabel}>OR</Text>
-                <View style={Styles.separatorLine} />
-            </View>
-        )
-    }
-
-    _forgotPasswordSection() {
-        return (
-            <View style={Styles.forgotPasswordContainer}>
-                <TouchableOpacity onPress={this._openForgotPasswordForm}>
-                    <Text style={Styles.forgotPasswordLabel}>Forgot Password?</Text>
-                </TouchableOpacity>
-            </View>
-        )
-    }
-
-    _forgotPasswordFormSection() {
-        return (
-            <Modal animationType='slide' visible={this.state.forgotPasswordFormOpened}>
-                <ForgotPassword />
-                <TouchableOpacity style={Styles.alreadyHaveAccountButton} onPress={this._closeForgotPasswordForm}>
-                    <Text style={Styles.alreadyHaveAccountButtonLabel}>Cancel</Text>
-                </TouchableOpacity>
-            </Modal>
-        )
     }
 
     _openForgotPasswordForm() {
@@ -106,29 +87,6 @@ export default class Login extends React.Component {
 
     _closeForgotPasswordForm() {
         this.setState({ forgotPasswordFormOpened: false });
-    }
-
-    _newAccountSection() {
-        return (
-            <View style={Styles.newAccountContainer}>
-                <TouchableOpacity style={Styles.newAccountButton} onPress={this._openNewAccountForm}>
-                    <Text style={Styles.newAccountLabel}>Create New Account</Text>
-                </TouchableOpacity>
-            </View>
-        )
-    }
-
-    _newAccountFormSection() {
-        const closeNewAccountForm = (account) => this._closeNewAccountForm();
-        const fillLoginCredentials = (account) => this._fillLoginCredentials(account);
-        return (
-            <Modal animationType='slide' visible={this.state.newAccountFormOpened}>
-                <NewAccount onSuccess={[closeNewAccountForm, fillLoginCredentials]} />
-                <TouchableOpacity style={Styles.alreadyHaveAccountButton} onPress={this._closeNewAccountForm}>
-                    <Text style={Styles.alreadyHaveAccountButtonLabel}>Already have an account?</Text>
-                </TouchableOpacity>
-            </Modal>
-        )
     }
 
     _fillLoginCredentials(account) {

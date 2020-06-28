@@ -2,13 +2,11 @@ export default class SearchNotesService {
 
     search(notes, expression) {
         if (!expression) return notes;
-        const byTitleOrNote = this._byTitleOrNote(expression);
-        return notes.filter(byTitleOrNote);
+        const byTitle = this._byTitle(expression);
+        return notes.filter(byTitle);
     }
 
-    _byTitleOrNote(expression) {
-        return (current) => 
-                current.title.indexOf(expression) !== -1 ||
-                current.note.indexOf(expression) !== -1;
+    _byTitle(expression) {
+        return (current) => current.title.toLowerCase().indexOf(expression.toLowerCase()) !== -1;
     }
 }

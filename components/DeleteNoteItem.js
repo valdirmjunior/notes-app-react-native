@@ -1,6 +1,6 @@
 import React from 'react';
-import Styles from './DeleteNoteItemStyles';
 import { TouchableOpacity, Image } from 'react-native';
+import Styles from './DeleteNoteItemStyles';
 import DeleteItemController from '../controllers/DeleteNoteController';
 
 export default class DeleteNoteItem extends React.Component {
