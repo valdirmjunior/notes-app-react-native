@@ -1,10 +1,9 @@
 import React from 'react';
-import { Text, View, TextInput, TouchableOpacity, Image, Modal, KeyboardAvoidingView, Alert } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, Image, Modal, KeyboardAvoidingView, Alert, StatusBar, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import Styles from './LoginStyles';
-import LoginService from '../services/LoginService';
-import SessionStorage from '../services/SessionStorage';
 import NewAccount from './NewAccount';
 import ForgotPassword from './ForgotPassword';
+import LoginController from '../controllers/LoginController';
 
 export default class Login extends React.Component {
 
@@ -17,14 +16,12 @@ export default class Login extends React.Component {
 
     constructor(props) {
         super(props);
-        this._loginService = new LoginService();
-        this._navigator = this.props.navigation;
         this._openNewAccountForm = this._openNewAccountForm.bind(this);
         this._closeNewAccountForm = this._closeNewAccountForm.bind(this);
         this._openForgotPasswordForm = this._openForgotPasswordForm.bind(this);
         this._closeForgotPasswordForm = this._closeForgotPasswordForm.bind(this);
         this._fillLoginCredentials = this._fillLoginCredentials.bind(this);
-        this._doLogin = this._doLogin.bind(this);
+        this._controller = new LoginController(this);
     }
 
     render() {
@@ -33,15 +30,18 @@ export default class Login extends React.Component {
 
     _loginScreen() {
         return (
-            <KeyboardAvoidingView style={Styles.mainContainer}>
-                {this._logoSection()}
-                {this._loginSection()}
-                {this._forgotPasswordSection()}
-                {this._forgotPasswordFormSection()}
-                {this._forgotPasswordOrNewAccountSeparator()}
-                {this._newAccountSection()}
-                {this._newAccountFormSection()}
-            </KeyboardAvoidingView>
+            <TouchableWithoutFeedback accessible={false} onPress={() => Keyboard.dismiss()}>
+                <KeyboardAvoidingView style={Styles.mainContainer}>
+                    <StatusBar hidden />
+                    {this._logoSection()}
+                    {this._loginSection()}
+                    {this._forgotPasswordSection()}
+                    {this._forgotPasswordFormSection()}
+                    {this._forgotPasswordOrNewAccountSeparator()}
+                    {this._newAccountSection()}
+                    {this._newAccountFormSection()}
+                </KeyboardAvoidingView>
+            </TouchableWithoutFeedback>
         )
     }
 
@@ -65,16 +65,8 @@ export default class Login extends React.Component {
         )
     }
 
-    _doLogin() {
-        try {
-            const email = this.state.email;
-            const password = this.state.password;
-            const loggedAccount = this._loginService.login(email, password);
-            SessionStorage.setLoggedAccount(loggedAccount);
-            this._navigator.navigate('Home');
-        } catch (error) {
-            Alert.alert('Log In', error);
-        }
+    _doLogin = () => {
+        this._controller.login();
     }
 
     _forgotPasswordOrNewAccountSeparator() {

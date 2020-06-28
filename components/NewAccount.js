@@ -25,11 +25,11 @@ export default class NewAccount extends React.Component {
 
     _newAccountScreen() {
         return (
-            <KeyboardAvoidingView style={Styles.mainContainer} behavior='padding'>
-                <View style={Styles.logoContainer}>
-                    <Image source={require('../assets/logo.png')} />
-                </View>
-                <TouchableWithoutFeedback accessible={false} onPress={() => Keyboard.dismiss()}>
+            <TouchableWithoutFeedback accessible={false} onPress={() => Keyboard.dismiss()}>
+                <KeyboardAvoidingView style={Styles.mainContainer} behavior='padding'>
+                    <View style={Styles.logoContainer}>
+                        <Image source={require('../assets/logo.png')} />
+                    </View>
                     <View style={Styles.newAccountContainer}>
                         <TextInput style={Styles.newAccountInput} placeholder='First name' value={this.state.account.firstName} onChangeText={this._handleFirstNameInput} />
                         <TextInput style={Styles.newAccountInput} placeholder='Last name' value={this.state.account.lastName} onChangeText={this._handleLastName} />
@@ -39,8 +39,8 @@ export default class NewAccount extends React.Component {
                             <Text style={Styles.saveAccountLabel}>Save</Text>
                         </TouchableOpacity>
                     </View>
-                </TouchableWithoutFeedback>
-            </KeyboardAvoidingView>
+                </KeyboardAvoidingView>
+            </TouchableWithoutFeedback>
         )
     }
 

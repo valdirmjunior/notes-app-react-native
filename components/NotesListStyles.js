@@ -51,7 +51,22 @@ const Styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'rgb(244, 182, 6)',
         fontSize: 17
-    }
+    },
+
+    searchTextInput: {
+        width: '100%',
+        padding: 13,
+        borderRadius: 7,
+        backgroundColor: 'rgb(244, 244, 244)',
+        fontSize: 17
+    },
+
+    noNotesFound: {
+        fontSize: 20,
+        textAlign: 'center',
+        color: 'rgb(244, 182, 6)',
+        fontWeight: 'bold'
+    },
 })
 
 export default Styles;

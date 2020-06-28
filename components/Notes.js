@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Modal } from 'react-native';
+import { View, Text, TouchableOpacity, Modal, StatusBar } from 'react-native';
 import Styles from './NotesStyles';
 import NewNote from './NewNote';
 import NotesList from './NotesList';
@@ -22,6 +22,7 @@ export default class Notes extends React.Component {
         const notes = this._currentAccount.notes;
         return (
             <View style={Styles.mainContainer}>
+                <StatusBar hidden />
                 <NotesList notes={notes} />
                 <View style={Styles.newNoteContainer}>
                     <TouchableOpacity style={Styles.newNoteButton} onPress={this._openNewNoteForm}>
