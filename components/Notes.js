@@ -26,13 +26,13 @@ export default class Notes extends React.Component {
                 <NotesList notes={notes} />
                 <View style={Styles.newNoteContainer}>
                     <TouchableOpacity style={Styles.newNoteButton} onPress={this._openNewNoteForm}>
-                        <Text style={Styles.newNoteButtonLabel}>New Note</Text>
+                        <Text style={Styles.newNoteButtonLabel}>Nova Nota</Text>
                     </TouchableOpacity>
                 </View>
                 <Modal animationType='slide' visible={this.state.newNoteFormOpened}>
                     <NewNote />
                     <TouchableOpacity style={Styles.cancelNewNoteButton} onPress={this._closeNewNoteForm}>
-                        <Text style={Styles.cancelNewNoteButtonLabel}>Cancel</Text>
+                        <Text style={Styles.cancelNewNoteButtonLabel}>Cancelar</Text>
                     </TouchableOpacity>
                 </Modal>
             </View>

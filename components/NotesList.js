@@ -34,17 +34,17 @@ export default class NotesList extends React.Component {
         return (
             <View style={Styles.notesContainer}>
                 <SafeAreaView>
-                    <TextInput style={Styles.searchTextInput} placeholder='Search' value={this.state.expression} onChangeText={this._handleSearchExpression} />
+                    <TextInput style={Styles.searchTextInput} placeholder='Procurar' value={this.state.expression} onChangeText={this._handleSearchExpression} />
                     <FlatList
                         data={notes}
                         renderItem={note => <NoteItem note={note.item} onDelete={[refreshList]} viewItem={this._openViewNotForm} />}
                         keyExtractor={(note) => note.id.toString()}
-                        ListEmptyComponent={() => <Text style={Styles.noNotesFound}>No notes found!</Text>} />
+                        ListEmptyComponent={() => <Text style={Styles.noNotesFound}>Nenhuma nota encontrada!</Text>} />
                 </SafeAreaView>
                 <Modal animationType='slide' visible={this.state.viewNoteFormOpened}>
                     <ViewNote note={this.state.viewingNote} />
                     <TouchableOpacity style={Styles.viewNoteButton} onPress={this._closeViewNoteForm}>
-                        <Text style={Styles.viewNoteButtonLabel}>Close</Text>
+                        <Text style={Styles.viewNoteButtonLabel}>Fechar</Text>
                     </TouchableOpacity>
                 </Modal>
             </View>
@@ -67,8 +67,8 @@ export default class NotesList extends React.Component {
         return (
             <View style={Styles.noNotesContainer}>
                 <Image source={require('../assets/logo.png')} />
-                <Text style={Styles.noNotesTitle}>No notes yet!</Text>
-                <Text style={Styles.noNotesInfo}>When you create notes, they'll appear here.</Text>
+                <Text style={Styles.noNotesTitle}>Nenhuma nota!</Text>
+                <Text style={Styles.noNotesInfo}>Quando você criar suas notas, elas serão exibidas aqui.</Text>
             </View>
         )
     }

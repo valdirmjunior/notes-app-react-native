@@ -25,10 +25,10 @@ export default class NewNote extends React.Component {
                         <Image source={require('../assets/logo.png')} />
                     </View>
                     <View style={Styles.newNoteContainer}>
-                        <TextInput style={Styles.newNoteTitle} value={this.state.note.title} placeholder='Title' onChangeText={this._handleTitleInputChanges} />
-                        <TextInput style={Styles.newNoteInput} value={this.state.note.note} placeholder='Type your note here' onChangeText={this._handleNoteInputChanges} multiline={true} numberOfLines={5} />
+                        <TextInput style={Styles.newNoteTitle} value={this.state.note.title} placeholder='Título' onChangeText={this._handleTitleInputChanges} />
+                        <TextInput style={Styles.newNoteInput} value={this.state.note.note} placeholder='Digite sua nota aqui' onChangeText={this._handleNoteInputChanges} multiline={true} numberOfLines={5} />
                         <TouchableOpacity style={Styles.saveNoteButton} onPress={this._saveNote}>
-                            <Text style={Styles.saveNoteButtonLabel}>Save</Text>
+                            <Text style={Styles.saveNoteButtonLabel}>Salvar</Text>
                         </TouchableOpacity>
                     </View>
                 </KeyboardAvoidingView>

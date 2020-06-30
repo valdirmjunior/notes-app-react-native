@@ -40,36 +40,36 @@ export default class Login extends React.Component {
                     </View>
                     <View style={Styles.loginContainer}>
                         <TextInput style={Styles.logInInput} value={this.state.email} placeholder='E-mail' onChangeText={(email) => this.setState({ email })} />
-                        <TextInput style={Styles.logInInput} value={this.state.password} placeholder='Password' onChangeText={(password) => this.setState({ password })} secureTextEntry />
+                        <TextInput style={Styles.logInInput} value={this.state.password} placeholder='Senha' onChangeText={(password) => this.setState({ password })} secureTextEntry />
                         <TouchableOpacity style={Styles.logInButton} onPress={this._doLogin}>
-                            <Text style={Styles.logInLabel}>Log In</Text>
+                            <Text style={Styles.logInLabel}>Entrar</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={Styles.forgotPasswordContainer}>
                         <TouchableOpacity onPress={this._openForgotPasswordForm}>
-                            <Text style={Styles.forgotPasswordLabel}>Forgot Password?</Text>
+                            <Text style={Styles.forgotPasswordLabel}>Esqueceu sua senha?</Text>
                         </TouchableOpacity>
                     </View>
                     <Modal animationType='slide' visible={this.state.forgotPasswordFormOpened}>
                         <ForgotPassword />
                         <TouchableOpacity style={Styles.alreadyHaveAccountButton} onPress={this._closeForgotPasswordForm}>
-                            <Text style={Styles.alreadyHaveAccountButtonLabel}>Cancel</Text>
+                            <Text style={Styles.alreadyHaveAccountButtonLabel}>Cancelar</Text>
                         </TouchableOpacity>
                     </Modal>
                     <View style={Styles.separatorContainer}>
                         <View style={Styles.separatorLine} />
-                        <Text style={Styles.separatorLabel}>OR</Text>
+                        <Text style={Styles.separatorLabel}>OU</Text>
                         <View style={Styles.separatorLine} />
                     </View>
                     <View style={Styles.newAccountContainer}>
                         <TouchableOpacity style={Styles.newAccountButton} onPress={this._openNewAccountForm}>
-                            <Text style={Styles.newAccountLabel}>Create New Account</Text>
+                            <Text style={Styles.newAccountLabel}>Criar Nova Conta</Text>
                         </TouchableOpacity>
                     </View>
                     <Modal animationType='slide' visible={this.state.newAccountFormOpened}>
                         <NewAccount onSuccess={[closeNewAccountForm, fillLoginCredentials]} />
                         <TouchableOpacity style={Styles.alreadyHaveAccountButton} onPress={this._closeNewAccountForm}>
-                            <Text style={Styles.alreadyHaveAccountButtonLabel}>Already have an account?</Text>
+                            <Text style={Styles.alreadyHaveAccountButtonLabel}>Já tem uma conta?</Text>
                         </TouchableOpacity>
                     </Modal>
                 </KeyboardAvoidingView>

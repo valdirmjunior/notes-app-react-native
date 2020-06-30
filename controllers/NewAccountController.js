@@ -18,7 +18,7 @@ export default class NewAccountController {
             this._saveService.save(account);
             this._cleanAccountForm();
             this._notifyListeners(account);
-            this._alert('Account saved successfully!');
+            this._alert('Conta salva com sucesso!');
         } catch (error) {
             this._alert(error);
         }
@@ -46,6 +46,6 @@ export default class NewAccountController {
     }
 
     _alert(message) {
-        Alert.alert('New Account', message);
+        Alert.alert('Nova Conta', message);
     }
 }

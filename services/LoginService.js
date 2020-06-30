@@ -10,19 +10,19 @@ export default class LoginService {
 
     _checkEmailWasProvided(email) {
         if (!email)
-            throw 'E-mail is required.'
+            throw 'E-mail é obrigatório.'
     }
 
     _checkPasswordWasProvided(password) {
         if (!password)
-            throw 'Password is required.'
+            throw 'Senha é obrigatória.'
     }
 
     _findAccountByCredentials(email, password) {
         const byCredentials = this._byCredentials(email, password);
         const matchedAccounts = AccountRepository._accounts.filter(byCredentials);
         if (matchedAccounts.length === 0)
-            throw 'Invalid e-mail or password.';
+            throw 'E-mail ou senha inválidos.';
         return matchedAccounts.pop();
     }
 

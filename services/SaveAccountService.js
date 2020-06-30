@@ -10,14 +10,14 @@ export default class SaveAccountService {
 
     _checkAccountWasProvided(account) {
         if (!account)
-            throw 'No account info was provided.';
+            throw 'Nenhuma informação da conta foi fornecida.';
     }
 
     _checkAccountDoesNotExists(account) {
         const byEmail = this._byEmail(account);
         const matches = AccountRepository._accounts.filter(byEmail);
         if (matches.length > 0)
-            throw 'E-mail already exists.';
+            throw 'E-mail já existe.';
     }
 
     _byEmail(account) {

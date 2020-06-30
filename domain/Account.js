@@ -19,27 +19,27 @@ export default class Account {
 
     _checkFirstNameWasProvided(firstName) {
         if (!firstName)
-            throw 'First name is required.';
+            throw 'Nome é obrigatório.';
     }
 
     _checkLastNameWasProvided(lastName) {
         if (!lastName)
-            throw 'Last name is required.';
+            throw 'Sobrenome é obrigatório.';
     }
 
     _checkEmailWasProvided(email) {
         if (!email)
-            throw 'E-mail is required.';
+            throw 'E-mail é obrigatório.';
     }
 
     _checkPasswordWasProvided(password) {
         if (!password)
-            throw 'Password is required.';
+            throw 'Senha é obrigatória.';
     }
 
     _checkNoteWasProvided(note) {
         if (!note)
-            throw 'No note was provided.';
+            throw 'Nenhuma nota foi fornecida.';
     }
 
     hasNotes() {
@@ -61,7 +61,7 @@ export default class Account {
             }
         });
         if (indexToRemove === -1)
-            throw 'Note not found!';
+            throw 'Nota não encontrada!';
         this._notes.splice(indexToRemove, 1);
     }
 

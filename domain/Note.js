@@ -13,12 +13,12 @@ export default class Note {
 
     _checkTitleWasProvided(title) {
         if (!title)
-            throw 'Title is required.';
+            throw 'Título é obrigatório.';
     }
 
     _checkNoteWasProvided(note) {
         if (!note)
-            throw 'Note is required.';
+            throw 'Nota é obrigatória.';
     }
 
     get title() {

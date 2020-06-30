@@ -23,17 +23,17 @@ export default class NewNoteController {
         const note = this._view.props.note;
         this._currentAccount.delete(note);
         this._notifyListeners(note);
-        this._alert('Note deleted successfully.');
+        this._alert('Nota apagada com sucesso.');
     }
 
     _prompt(confirm, cancel) {
         const yesButton = { text: 'Yes', onPress: confirm };
         const noButton = { text: 'No', onPress: cancel };
-        Alert.alert('Delete Note', 'Do you want to delete this note?', [yesButton, noButton]);
+        Alert.alert('Apagar Nota', 'Deseja apagar essa nota?', [yesButton, noButton]);
     }
 
     _alert(message) {
-        Alert.alert('Delete Note', message);
+        Alert.alert('Apagar Nota', message);
     }
 
     _notifyListeners(note) {

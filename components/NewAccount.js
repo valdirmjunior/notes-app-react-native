@@ -31,12 +31,12 @@ export default class NewAccount extends React.Component {
                         <Image source={require('../assets/logo.png')} />
                     </View>
                     <View style={Styles.newAccountContainer}>
-                        <TextInput style={Styles.newAccountInput} placeholder='First name' value={this.state.account.firstName} onChangeText={this._handleFirstNameInput} />
-                        <TextInput style={Styles.newAccountInput} placeholder='Last name' value={this.state.account.lastName} onChangeText={this._handleLastName} />
+                        <TextInput style={Styles.newAccountInput} placeholder='Nome' value={this.state.account.firstName} onChangeText={this._handleFirstNameInput} />
+                        <TextInput style={Styles.newAccountInput} placeholder='Sobrenome' value={this.state.account.lastName} onChangeText={this._handleLastName} />
                         <TextInput style={Styles.newAccountInput} placeholder='E-mail' value={this.state.account.email} onChangeText={this._handleEmailInput} />
-                        <TextInput style={Styles.newAccountInput} placeholder='Password' value={this.state.account.password} onChangeText={this._handlePasswordInput} secureTextEntry />
+                        <TextInput style={Styles.newAccountInput} placeholder='Senha' value={this.state.account.password} onChangeText={this._handlePasswordInput} secureTextEntry />
                         <TouchableOpacity style={Styles.saveAccountButton} onPress={this._saveAccount}>
-                            <Text style={Styles.saveAccountLabel}>Save</Text>
+                            <Text style={Styles.saveAccountLabel}>Salvar</Text>
                         </TouchableOpacity>
                     </View>
                 </KeyboardAvoidingView>

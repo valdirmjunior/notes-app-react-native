@@ -18,7 +18,7 @@ export default class NewNoteController {
             this._currentAccount.add(note);
             this._notifyListeners();
             this._cleanNoteForm();
-            this._alert('Note saved successfully!');
+            this._alert('Nota salva com sucesso!');
         } catch (error) {
             this._alert(error);
         }
@@ -42,6 +42,6 @@ export default class NewNoteController {
     }
 
     _alert(message) {
-        Alert.alert('New Note', message);
+        Alert.alert('Nova Nota', message);
     }
 }

@@ -22,6 +22,6 @@ export default class LoginController {
     }
 
     _alert(message) {
-        Alert.alert('Log In', message);
+        Alert.alert('Autenticação', message);
     }
 }
