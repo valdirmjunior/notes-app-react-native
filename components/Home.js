@@ -13,8 +13,8 @@ const CustomDrawerComponent = props => (
     <SafeAreaView style={Styles.mainContainer}>
         <ScrollView>
             <View style={Styles.logoContainer}>
-                <Image source={require('../assets/logo.png')} />
-                <Text style={Styles.helloLabel}>Olá, {SessionStorage.getLoggedAccount().firstName}</Text>
+                <Image source={require('../assets/no-profile-photo.png')} />
+                <Text style={Styles.helloLabel}>Olá, {SessionStorage.getLoggedAccount().firstName}.</Text>
             </View>
             <DrawerItems {...props} />
             <TouchableOpacity style={Styles.logOutButton} onPress={() => props.navigation.navigate('Login')}>
