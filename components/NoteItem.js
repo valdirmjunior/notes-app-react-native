@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import Styles from './NoteItemStyles';
 import DeleteNoteItem from './DeleteNoteItem';
 
@@ -15,6 +15,7 @@ export default class NoteItem extends React.Component {
         return (
             <TouchableOpacity onPress={() => this.props.viewItem(note)}>
                 <View style={Styles.noteItemContainer}>
+                    <Image source={require('../assets/note-item.png')} style={Styles.noteIcon} />
                     <Text style={Styles.noteTitle}>
                         {note.title}
                     </Text>

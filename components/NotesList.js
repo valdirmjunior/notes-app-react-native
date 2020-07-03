@@ -31,13 +31,14 @@ export default class NotesList extends React.Component {
     _notesContainer() {
         const notes = this._searchService.search(this._notes, this.state.expression);
         const refreshList = (note) => this.forceUpdate();
+        const clearSearchInput = (note) => this.setState({expression: ''})
         return (
             <View style={Styles.notesContainer}>
                 <SafeAreaView>
                     <TextInput style={Styles.searchTextInput} placeholder='Procurar' value={this.state.expression} onChangeText={this._handleSearchExpression} />
                     <FlatList
                         data={notes}
-                        renderItem={note => <NoteItem note={note.item} onDelete={[refreshList]} viewItem={this._openViewNotForm} />}
+                        renderItem={note => <NoteItem note={note.item} onDelete={[refreshList, clearSearchInput]} viewItem={this._openViewNotForm} />}
                         keyExtractor={(note) => note.id.toString()}
                         ListEmptyComponent={() => <Text style={Styles.noNotesFound}>Nenhuma nota encontrada!</Text>} />
                 </SafeAreaView>

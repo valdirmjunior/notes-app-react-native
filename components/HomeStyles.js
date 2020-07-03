@@ -6,6 +6,12 @@ const Styles = StyleSheet.create({
         flex: 1
     },
 
+    logoContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 10
+    },
+
     logOutButton: {
         width: '100%',
         paddingVertical: 12,
@@ -14,6 +20,12 @@ const Styles = StyleSheet.create({
 
     logOutButtonLabel: {
         fontSize: 14,
+        fontWeight: 'bold',
+        color: 'grey'
+    },
+
+    helloLabel: {
+        fontSize: 17,
         fontWeight: 'bold',
         color: 'grey'
     }
