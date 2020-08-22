@@ -15,7 +15,7 @@ const Styles = StyleSheet.create({
         width: '100%',
         height: '35%',
         borderStyle: 'solid',
-        backgroundColor: 'rgb(247, 247, 247)',
+        backgroundColor: 'rgb(235, 235, 235)',
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -45,7 +45,7 @@ const Styles = StyleSheet.create({
         borderRadius: 3,
         marginTop: 5,
         padding: 15,
-        borderColor: 'rgb(216, 222, 226)'
+        borderColor: 'rgb(215, 215, 215)'
     },
 
     findAccountButton: {

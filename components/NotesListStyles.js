@@ -43,7 +43,7 @@ const Styles = StyleSheet.create({
     viewNoteButton: {
         width: '100%',
         padding: 13,
-        backgroundColor: 'rgb(247, 247, 247)'
+        backgroundColor: 'rgb(235, 235, 235)'
     },
 
     viewNoteButtonLabel: {
@@ -57,7 +57,7 @@ const Styles = StyleSheet.create({
         width: '100%',
         padding: 13,
         borderRadius: 7,
-        backgroundColor: 'rgb(244, 244, 244)',
+        backgroundColor: 'rgb(235, 235, 235)',
         fontSize: 17
     },
 

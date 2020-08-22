@@ -18,7 +18,7 @@ const Styles = StyleSheet.create({
     newNoteButton: {
         width: '100%',
         padding: 13,
-        backgroundColor: 'rgb(247, 247, 247)'
+        backgroundColor: 'rgb(235, 235, 235)'
     },
 
     newNoteButtonLabel: {
@@ -31,7 +31,7 @@ const Styles = StyleSheet.create({
     cancelNewNoteButton: {
         width: '100%',
         padding: 13,
-        backgroundColor: 'rgb(247, 247, 247)'
+        backgroundColor: 'rgb(235, 235, 235)'
     },
 
     cancelNewNoteButtonLabel: {

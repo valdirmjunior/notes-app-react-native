@@ -5,7 +5,7 @@ const Styles = StyleSheet.create({
     noteItemContainer: {
         flex: 1,
         flexDirection: 'row',
-        backgroundColor: 'rgb(255, 251, 239)',
+        backgroundColor: 'rgb(255, 250, 230)',
         marginVertical: 3,
         alignItems: 'center',
         borderRadius: 3,

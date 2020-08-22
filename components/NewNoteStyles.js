@@ -14,7 +14,7 @@ const Styles = StyleSheet.create({
     logoContainer: {
         width: '100%',
         height: '35%',
-        backgroundColor: 'rgb(247, 247, 247)',
+        backgroundColor: 'rgb(235, 235, 235)',
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -34,7 +34,7 @@ const Styles = StyleSheet.create({
         borderRadius: 3,
         marginTop: 5,
         padding: 15,
-        borderColor: 'rgb(216, 222, 226)'
+        borderColor: 'rgb(215, 215, 215)'
     },
 
     newNoteInput: {
@@ -44,7 +44,7 @@ const Styles = StyleSheet.create({
         borderRadius: 3,
         marginTop: 5,
         padding: 15,
-        borderColor: 'rgb(216, 222, 226)',
+        borderColor: 'rgb(215, 215, 215)',
         height: 150
     },
 

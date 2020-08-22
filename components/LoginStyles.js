@@ -17,7 +17,7 @@ const Styles = StyleSheet.create({
         width: '100%',
         height: '36%',
         borderStyle: 'solid',
-        backgroundColor: 'rgb(247, 247, 247)',
+        backgroundColor: 'rgb(235, 235, 235)',
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -41,7 +41,7 @@ const Styles = StyleSheet.create({
         borderStyle: 'solid',
         borderRadius: 3,
         padding: 15,
-        borderColor: 'rgb(216, 222, 226)'
+        borderColor: 'rgb(215, 215, 215)'
     },
 
     logInButton: {
@@ -96,7 +96,7 @@ const Styles = StyleSheet.create({
 
     separatorLine: {
         borderStyle: 'solid',
-        borderColor: 'rgb(247, 247, 247)',
+        borderColor: 'rgb(235, 235, 235)',
         borderBottomWidth: 2,
         width: '35%'
     },
@@ -116,7 +116,7 @@ const Styles = StyleSheet.create({
         borderStyle: 'solid',
         borderRadius: 7,
         padding: 13,
-        backgroundColor: 'rgb(247, 247, 247)'
+        backgroundColor: 'rgb(235, 235, 235)'
     },
 
     newAccountLabel: {
@@ -129,7 +129,7 @@ const Styles = StyleSheet.create({
     alreadyHaveAccountButton: {
         width: '100%',
         padding: 13,
-        backgroundColor: 'rgb(247, 247, 247)'
+        backgroundColor: 'rgb(235, 235, 235)'
     },
 
     alreadyHaveAccountButtonLabel: {
